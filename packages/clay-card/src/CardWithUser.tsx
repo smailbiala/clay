@@ -13,7 +13,9 @@ import React from 'react';
 
 import ClayCard from './Card';
 
-interface IProps extends React.BaseHTMLAttributes<HTMLDivElement> {
+import type {ButtonWithIconProps} from '@clayui/button';
+
+export interface IProps extends React.BaseHTMLAttributes<HTMLDivElement> {
 	/**
 	 * List of actions in the dropdown menu
 	 */
@@ -37,7 +39,10 @@ interface IProps extends React.BaseHTMLAttributes<HTMLDivElement> {
 	/**
 	 * Props to add to the dropdown trigger element
 	 */
-	dropDownTriggerProps?: React.HTMLAttributes<HTMLButtonElement>;
+	dropDownTriggerProps?: Omit<
+		ButtonWithIconProps,
+		'symbol' | 'spritemap' | 'displayType' | 'className'
+	>;
 
 	/**
 	 * Path or URL to user
@@ -65,6 +70,11 @@ interface IProps extends React.BaseHTMLAttributes<HTMLDivElement> {
 	spritemap?: string;
 
 	/**
+	 * Title for user icon.
+	 */
+	stickerTitle?: string;
+
+	/**
 	 * Displays the color of the user icon
 	 */
 	userDisplayType?: StickerDisplayType;
@@ -85,17 +95,21 @@ interface IProps extends React.BaseHTMLAttributes<HTMLDivElement> {
 	userSymbol?: string;
 }
 
-export const ClayCardWithUser: React.FunctionComponent<IProps> = ({
+export const ClayCardWithUser = ({
+	'aria-label': ariaLabel,
 	actions,
 	checkboxProps = {},
 	description,
 	disabled,
-	dropDownTriggerProps = {},
+	dropDownTriggerProps = {
+		'aria-label': 'More actions',
+	},
 	href,
 	name,
 	onSelectChange,
 	selected = false,
 	spritemap,
+	stickerTitle,
 	userImageAlt = 'thumbnail',
 	userDisplayType,
 	userImageSrc,
@@ -108,6 +122,7 @@ export const ClayCardWithUser: React.FunctionComponent<IProps> = ({
 				className="sticker-user-icon"
 				displayType={userDisplayType}
 				shape="circle"
+				title={stickerTitle}
 			>
 				{userImageSrc && (
 					<ClaySticker.Image alt={userImageAlt} src={userImageSrc} />
@@ -145,6 +160,7 @@ export const ClayCardWithUser: React.FunctionComponent<IProps> = ({
 				<ClayCard.Row>
 					<ClayLayout.ContentCol expand>
 						<ClayCard.Description
+							aria-label={ariaLabel ?? name}
 							disabled={disabled}
 							displayType="title"
 							href={href}
@@ -166,7 +182,7 @@ export const ClayCardWithUser: React.FunctionComponent<IProps> = ({
 								spritemap={spritemap}
 								trigger={
 									<ClayButtonWithIcon
-										{...dropDownTriggerProps}
+										{...(dropDownTriggerProps as ButtonWithIconProps)}
 										className="component-action"
 										disabled={disabled}
 										displayType="unstyled"

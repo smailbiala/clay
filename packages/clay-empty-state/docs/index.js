@@ -41,6 +41,7 @@ const emptyStateWithImageCode = `const Component = () => {
 			description="You don't have more notifications to review"
 			imgProps={{alt: 'Alternative Text', title: 'Hello World!'}}
 			imgSrc="/images/success_state.gif"
+			imgSrcReducedMotion="/images/success_state_reduced_motion.gif"
 			title="Hurray"
 		/>
 	);
@@ -55,6 +56,36 @@ export const EmptyStateWithImage = () => {
 		<Editor
 			code={emptyStateWithImageCode}
 			imports={emptyStateWithImageCodeImports}
+			scope={scope}
+		/>
+	);
+};
+
+const emptyStateReducedMotionWithImageCodeImports = `import ClayEmptyState from '@clayui/empty-state';`;
+
+const emptyStateReducedMotionWithImageCode = `const Component = () => {
+	return (
+		<div className="c-prefers-reduced-motion">
+			<ClayEmptyState
+				description="You don't have more notifications to review"
+				imgProps={{alt: 'Alternative Text', title: 'Hello World!'}}
+				imgSrc="/images/success_state.gif"
+				imgSrcReducedMotion="/images/success_state_reduced_motion.gif"
+				title="Hurray"
+			/>
+		</div>
+	);
+}
+
+render(<Component />)`;
+
+export const EmptyStateReducedMotionWithImage = () => {
+	const scope = {ClayEmptyState};
+
+	return (
+		<Editor
+			code={emptyStateReducedMotionWithImageCode}
+			imports={emptyStateReducedMotionWithImageCodeImports}
 			scope={scope}
 		/>
 	);

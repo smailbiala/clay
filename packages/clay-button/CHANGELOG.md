@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.100.0](https://github.com/liferay/clay/compare/v3.99.4...v3.100.0) (2023-07-13)
+
+### Features
+
+-   **@clayui/button:** Adds display type beta-dark ([cc6e973](https://github.com/liferay/clay/commit/cc6e97317b3e29fa91d3b3d4c53f53b67010ed95))
+
+# [3.92.0](https://github.com/liferay/clay/compare/v3.91.0...v3.92.0) (2023-04-06)
+
+**Note:** Version bump only for package @clayui/button
+
+# [3.83.0](https://github.com/liferay/clay/compare/v3.82.0...v3.83.0) (2022-12-20)
+
+### Bug Fixes
+
+-   **@clayui/button:** improves the error message for button accessibility and the ButtonWithIcon component type ([2801f97](https://github.com/liferay/clay/commit/2801f978157a3b7781fc49f8ac3b9f85e90da0e6))
+
+# [3.82.0](https://github.com/liferay/clay/compare/v3.81.0...v3.82.0) (2022-12-07)
+
+### Bug Fixes
+
+-   **@clayui/button:** update warning text ([a1e571b](https://github.com/liferay/clay/commit/a1e571bbdf959b20e2ec544e7dc278d65fce328d))
+
+# [3.81.0](https://github.com/liferay/clay/compare/v3.80.1...v3.81.0) (2022-11-30)
+
+### Features
+
+-   **@clayui/button:** add warning when button with icon has not declared `aria-label` attribute ([cb23cd3](https://github.com/liferay/clay/commit/cb23cd3426255c3e551029a999de58e26e2fddae))
+
+# [3.73.0](https://github.com/liferay/clay/compare/v3.72.0...v3.73.0) (2022-09-13)
+
+### Bug Fixes
+
+-   **@clayui/button:** Storybook adds rounded and shape ([cffacb1](https://github.com/liferay/clay/commit/cffacb18a425af50fe635e94edd9276fdc279b39))
+
+### Features
+
+-   **@clayui/button:** Adds rounded and size attributes to output pill and different size buttons ([7ce56ff](https://github.com/liferay/clay/commit/7ce56ffe80890fea318e82245770d3403ded586d))
+
+# [3.65.0](https://github.com/liferay/clay/compare/v3.64.0...v3.65.0) (2022-07-11)
+
+**Note:** Version bump only for package @clayui/button
+
+# [3.56.0](https://github.com/liferay/clay/compare/v3.55.0...v3.56.0) (2022-05-09)
+
+**Note:** Version bump only for package @clayui/button
+
+# [3.40.0](https://github.com/liferay/clay/compare/v3.39.0...v3.40.0) (2021-11-17)
+
+**Note:** Version bump only for package @clayui/button
+
+# [3.39.0](https://github.com/liferay/clay/compare/v3.38.0...v3.39.0) (2021-10-29)
+
+**Note:** Version bump only for package @clayui/button
+
+# [3.38.0](https://github.com/liferay/clay/compare/v3.37.0...v3.38.0) (2021-10-22)
+
+### Bug Fixes
+
+-   **@clayui/button:** add missing displayTypes from the Button ([1cb8849](https://github.com/liferay/clay/commit/1cb8849810c5a841025ac6aec15fcc62b053d01b))
+
+# [3.37.0](https://github.com/liferay/clay/compare/v3.36.0...v3.37.0) (2021-10-06)
+
+**Note:** Version bump only for package @clayui/button
+
 # [3.32.0](https://github.com/liferay/clay/compare/v3.31.0...v3.32.0) (2021-07-28)
 
 **Note:** Version bump only for package @clayui/button

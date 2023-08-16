@@ -3,6 +3,348 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.103.1](https://github.com/liferay/clay/compare/v3.103.0...v3.103.1) (2023-08-15)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.101.0](https://github.com/liferay/clay/compare/v3.100.0...v3.101.0) (2023-07-28)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.100.0](https://github.com/liferay/clay/compare/v3.99.4...v3.100.0) (2023-07-13)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+## [3.99.4](https://github.com/liferay/clay/compare/v3.99.3...v3.99.4) (2023-07-10)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+## [3.99.1](https://github.com/liferay/clay/compare/v3.99.0...v3.99.1) (2023-07-04)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.99.0](https://github.com/liferay/clay/compare/v3.98.0...v3.99.0) (2023-06-28)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.98.0](https://github.com/liferay/clay/compare/v3.97.2...v3.98.0) (2023-06-20)
+
+### Bug Fixes
+
+-   **@clayui/date-picker:** fixes error when not selecting the year ([747f09e](https://github.com/liferay/clay/commit/747f09e8d3d716eda68d3e080b3efd9592ecf26c))
+
+### Features
+
+-   **@clayui/date-picker:** add Picker component to select year ([6c84e4a](https://github.com/liferay/clay/commit/6c84e4a16e1a3eab84ee54d0332606d571987678))
+
+## [3.97.1](https://github.com/liferay/clay/compare/v3.97.0...v3.97.1) (2023-06-14)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.97.0](https://github.com/liferay/clay/compare/v3.96.1...v3.97.0) (2023-06-13)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.96.0](https://github.com/liferay/clay/compare/v3.95.2...v3.96.0) (2023-05-29)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+## [3.95.2](https://github.com/liferay/clay/compare/v3.95.0...v3.95.2) (2023-05-17)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.95.0](https://github.com/liferay/clay/compare/v3.94.0...v3.95.0) (2023-05-15)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.94.0](https://github.com/liferay/clay/compare/v3.93.0...v3.94.0) (2023-05-03)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.93.0](https://github.com/liferay/clay/compare/v3.92.0...v3.93.0) (2023-04-19)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.92.0](https://github.com/liferay/clay/compare/v3.91.0...v3.92.0) (2023-04-06)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.91.0](https://github.com/liferay/clay/compare/v3.90.0...v3.91.0) (2023-03-24)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.90.0](https://github.com/liferay/clay/compare/v3.89.0...v3.90.0) (2023-03-15)
+
+### Bug Fixes
+
+-   **@clayui/date-picker:** Dependency array of UseCallback should include every dependencies of the memoized function ([38f859e](https://github.com/liferay/clay/commit/38f859ed8d65b44c78f7e6208311d5a66fc5810c))
+-   **@clayui/date-picker:** fix focus bug in date picker ([613d041](https://github.com/liferay/clay/commit/613d0412961aa3073b9de4736561efec0435bb84))
+-   **@clayui/date-picker:** updateDate is memoized without dateFormat dependency ([827acff](https://github.com/liferay/clay/commit/827acff5a5c26fe54f8c77be488b2f94162ac83f))
+
+# [3.89.0](https://github.com/liferay/clay/compare/v3.88.0...v3.89.0) (2023-03-01)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.88.0](https://github.com/liferay/clay/compare/v3.87.2...v3.88.0) (2023-02-14)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.87.0](https://github.com/liferay/clay/compare/v3.86.1...v3.87.0) (2023-02-08)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+## [3.86.1](https://github.com/liferay/clay/compare/v3.86.0...v3.86.1) (2023-02-02)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.86.0](https://github.com/liferay/clay/compare/v3.85.0...v3.86.0) (2023-01-31)
+
+### Bug Fixes
+
+-   **@clayui/date-picker:** Date Range should be selectable with a single click ([ecd4c94](https://github.com/liferay/clay/commit/ecd4c942617244df6797bc69d5659957f7590540))
+
+# [3.85.0](https://github.com/liferay/clay/compare/v3.84.0...v3.85.0) (2023-01-23)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.84.0](https://github.com/liferay/clay/compare/v3.83.1...v3.84.0) (2022-12-23)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+## [3.83.1](https://github.com/liferay/clay/compare/v3.83.0...v3.83.1) (2022-12-20)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.83.0](https://github.com/liferay/clay/compare/v3.82.0...v3.83.0) (2022-12-20)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.82.0](https://github.com/liferay/clay/compare/v3.81.0...v3.82.0) (2022-12-07)
+
+### Bug Fixes
+
+-   **@clayui/date-picker:** moves focus to selected cell when clicking dot button ([9d0d8d1](https://github.com/liferay/clay/commit/9d0d8d1326ab4752d28fb6367ee0ee066cffc46c))
+-   fix bug when scrolling page when navigating via arrow keys ([45092ec](https://github.com/liferay/clay/commit/45092ec26bf6ce6adefc5e53ab3e0d69330662fb))
+
+### Features
+
+-   **@clayui/date-picker:** implements keyboard navigation to DatePicker ([c8b0a13](https://github.com/liferay/clay/commit/c8b0a13f62623ae080e5777760ad1296619eafe8))
+-   removes duplication of implementation of accessibility features for menu using Overlay component ([9d60eb9](https://github.com/liferay/clay/commit/9d60eb9670cb5dc9fc18e02e3a97f139f1db4cfd))
+
+# [3.81.0](https://github.com/liferay/clay/compare/v3.80.1...v3.81.0) (2022-11-30)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+## [3.80.1](https://github.com/liferay/clay/compare/v3.80.0...v3.80.1) (2022-11-22)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.80.0](https://github.com/liferay/clay/compare/v3.79.0...v3.80.0) (2022-11-21)
+
+### Bug Fixes
+
+-   **@clayui/date-picker:** Map id attribute to .form-control ([b53a81a](https://github.com/liferay/clay/commit/b53a81a98defdb248d5ad86739e766efc88e4dec))
+
+### Features
+
+-   **@clayui/date-picker:** improves semantic accessibility for the component ([60a7f76](https://github.com/liferay/clay/commit/60a7f7616563faa15817b4daa3525bd842260ef3))
+
+### BREAKING CHANGES
+
+-   **@clayui/date-picker:** The `id` attribute now maps to `.form-control`
+
+# [3.79.0](https://github.com/liferay/clay/compare/v3.78.2...v3.79.0) (2022-11-08)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+## [3.78.2](https://github.com/liferay/clay/compare/v3.78.1...v3.78.2) (2022-10-25)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+## [3.78.1](https://github.com/liferay/clay/compare/v3.78.0...v3.78.1) (2022-10-25)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.78.0](https://github.com/liferay/clay/compare/v3.77.0...v3.78.0) (2022-10-25)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.77.0](https://github.com/liferay/clay/compare/v3.76.0...v3.77.0) (2022-10-17)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+## [3.75.2](https://github.com/liferay/clay/compare/v3.75.1...v3.75.2) (2022-09-29)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.75.0](https://github.com/liferay/clay/compare/v3.74.0...v3.75.0) (2022-09-28)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.74.0](https://github.com/liferay/clay/compare/v3.73.0...v3.74.0) (2022-09-19)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.73.0](https://github.com/liferay/clay/compare/v3.72.0...v3.73.0) (2022-09-13)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.72.0](https://github.com/liferay/clay/compare/v3.71.0...v3.72.0) (2022-09-05)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.71.0](https://github.com/liferay/clay/compare/v3.70.3...v3.71.0) (2022-08-30)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+## [3.70.3](https://github.com/liferay/clay/compare/v3.70.2...v3.70.3) (2022-08-30)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+## [3.70.2](https://github.com/liferay/clay/compare/v3.70.1...v3.70.2) (2022-08-30)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.70.0](https://github.com/liferay/clay/compare/v3.69.0...v3.70.0) (2022-08-23)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.69.0](https://github.com/liferay/clay/compare/v3.68.0...v3.69.0) (2022-08-16)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.68.0](https://github.com/liferay/clay/compare/v3.67.0...v3.68.0) (2022-08-01)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.67.0](https://github.com/liferay/clay/compare/v3.66.0...v3.67.0) (2022-07-25)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.66.0](https://github.com/liferay/clay/compare/v3.65.2...v3.66.0) (2022-07-20)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+## [3.65.2](https://github.com/liferay/clay/compare/v3.65.1...v3.65.2) (2022-07-19)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+## [3.65.1](https://github.com/liferay/clay/compare/v3.65.0...v3.65.1) (2022-07-11)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.65.0](https://github.com/liferay/clay/compare/v3.64.0...v3.65.0) (2022-07-11)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.64.0](https://github.com/liferay/clay/compare/v3.63.0...v3.64.0) (2022-07-04)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.62.0](https://github.com/liferay/clay/compare/v3.61.0...v3.62.0) (2022-06-20)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.59.0](https://github.com/liferay/clay/compare/v3.58.1...v3.59.0) (2022-05-30)
+
+### Bug Fixes
+
+-   **@clayui/date-picker:** updates Date Picker state when component is controlled ([adda584](https://github.com/liferay/clay/commit/adda58428a28a5ca22df6b24d68a386851a15378))
+
+# [3.58.0](https://github.com/liferay/clay/compare/v3.57.0...v3.58.0) (2022-05-23)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.57.0](https://github.com/liferay/clay/compare/v3.56.0...v3.57.0) (2022-05-16)
+
+### Bug Fixes
+
+-   **@clayui/date-picker:** fix date picker error not starting with default values using controlled or uncontrolled ([434fb7b](https://github.com/liferay/clay/commit/434fb7b379a7bbad95284f891b893e2c5b12b956))
+
+# [3.56.0](https://github.com/liferay/clay/compare/v3.55.0...v3.56.0) (2022-05-09)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.55.0](https://github.com/liferay/clay/compare/v3.54.0...v3.55.0) (2022-05-02)
+
+### Features
+
+-   **@clayui/date-picker:** standardize the controlled and uncontrolled component behavior to `value` prop ([4183972](https://github.com/liferay/clay/commit/41839726ad26e0abb8c681f3d2e8af0d090afbf3))
+
+# [3.52.0](https://github.com/liferay/clay/compare/v3.51.0...v3.52.0) (2022-04-04)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.49.0](https://github.com/liferay/clay/compare/v3.48.0...v3.49.0) (2022-03-15)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.48.0](https://github.com/liferay/clay/compare/v3.47.0...v3.48.0) (2022-03-07)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.47.0](https://github.com/liferay/clay/compare/v3.46.0...v3.47.0) (2022-02-23)
+
+### Features
+
+-   **@clayui/date-picker:** adds a new `yearsCheck` prop to be able to disable the check if the year is within the years range ([c8b26e9](https://github.com/liferay/clay/commit/c8b26e9cd7eeea86af92f6690404b8ef9159e2f4))
+
+# [3.46.0](https://github.com/liferay/clay/compare/v3.45.1...v3.46.0) (2022-02-09)
+
+### Bug Fixes
+
+-   **@clayui/date-picker:** Adding some changes related to time reset and refactoring code ([dd4d2e8](https://github.com/liferay/clay/commit/dd4d2e835ec5ff5ca8068ddc04255ac1712e8d48))
+-   **@clayui/date-picker:** fix bug when not changing time to current time when clicking on dot button ([5daa1f1](https://github.com/liferay/clay/commit/5daa1f10a12a426caea6c6ffffa6e6e719d8859e))
+-   **@clayui/date-picker:** fix error in always adding ampm when user is typing ([d5502e4](https://github.com/liferay/clay/commit/d5502e4cff31c1db56981d33dafdf794e8a4029d))
+-   **@clayui/date-picker:** fix error when formatting time using 12 hours ([8061529](https://github.com/liferay/clay/commit/8061529170f421cf30d2133a1b8570deaf178a5a))
+-   **@clayui/date-picker:** Removing initialized variables ([997e10f](https://github.com/liferay/clay/commit/997e10f0743e06b95ed360d47614e35c15c9b655))
+-   **@clayui/date-picker:** Reset actual date when input string is empty ([94de1ae](https://github.com/liferay/clay/commit/94de1ae27a83e328a173481b3c1a3705b9fb0e93))
+
+# [3.45.0](https://github.com/liferay/clay/compare/v3.44.2...v3.45.0) (2022-02-01)
+
+### Bug Fixes
+
+-   **@clayui/date-picker:** fix time picker default value ([770639f](https://github.com/liferay/clay/commit/770639f1e37486c2844cc3b95e05f36659de3ebf))
+-   **@clayui/date-picker:** fixes error when not formatting time in 12hours when passing to time picker ([2090eb4](https://github.com/liferay/clay/commit/2090eb495f20841259d4ad55381480237eb2b931))
+
+# [3.43.0](https://github.com/liferay/clay/compare/v3.42.0...v3.43.0) (2021-12-29)
+
+### Features
+
+-   **@clayui/date-picker:** adds 12-hour time support ([43863ce](https://github.com/liferay/clay/commit/43863ce20d92ea7dffce06f1071192a68e7eae80))
+
+# [3.42.0](https://github.com/liferay/clay/compare/v3.41.0...v3.42.0) (2021-12-15)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.41.0](https://github.com/liferay/clay/compare/v3.40.1...v3.41.0) (2021-12-02)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.40.0](https://github.com/liferay/clay/compare/v3.39.0...v3.40.0) (2021-11-17)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.39.0](https://github.com/liferay/clay/compare/v3.38.0...v3.39.0) (2021-10-29)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.38.0](https://github.com/liferay/clay/compare/v3.37.0...v3.38.0) (2021-10-22)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.37.0](https://github.com/liferay/clay/compare/v3.36.0...v3.37.0) (2021-10-06)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+# [3.36.0](https://github.com/liferay/clay/compare/v3.35.3...v3.36.0) (2021-09-23)
+
+**Note:** Version bump only for package @clayui/date-picker
+
+## [3.35.3](https://github.com/liferay/clay/compare/v3.35.2...v3.35.3) (2021-09-09)
+
+**Note:** Version bump only for package @clayui/date-picker
+
 ## [3.35.2](https://github.com/liferay/clay/compare/v3.35.1...v3.35.2) (2021-08-30)
 
 **Note:** Version bump only for package @clayui/date-picker

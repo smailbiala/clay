@@ -16,10 +16,8 @@ $panel-margin-bottom: $spacer !default;
 // Panel Header
 
 $panel-header-border-bottom-width: 1px !default;
-$panel-header-offset-border-radius: if(
-	$panel-border-top-width > 0,
-	calc(#{$panel-border-radius} - #{$panel-border-top-width}),
-	$panel-border-radius
+$panel-header-offset-border-radius: calc(
+	#{$panel-border-radius} - #{$panel-border-top-width}
 ) !default;
 $panel-header-font-size: $font-size-base !default;
 $panel-header-line-height: $headings-line-height !default;
@@ -49,7 +47,8 @@ $panel-header-link: map-deep-merge(
 		color: inherit,
 		display: block,
 		text-decoration: $panel-header-link-text-decoration,
-		transition: border-color 0.1s ease#{','} border-radius 0.5s ease,
+		transition: #{border-color 0.1s ease,
+		border-radius 0.5s ease},
 		hover: (
 			color: inherit,
 			text-decoration: $panel-header-link-hover-text-decoration,
@@ -78,10 +77,8 @@ $panel-body-padding-y: 0.75rem !default;
 // Panel Footer
 
 $panel-footer-border-top-width: 1px !default;
-$panel-footer-offset-border-radius: if(
-	$panel-border-bottom-width > 0,
-	calc(#{$panel-border-radius} - #{$panel-border-bottom-width}),
-	$panel-border-radius
+$panel-footer-offset-border-radius: calc(
+	#{$panel-border-radius} - #{$panel-border-bottom-width}
 ) !default;
 $panel-footer-padding-x: $panel-header-padding-x !default;
 $panel-footer-padding-y: $panel-header-padding-y !default;
@@ -99,7 +96,9 @@ $panel-title-small-margin-left: null !default;
 
 // Panel Group
 
-$panel-group-panel-margin-bottom: -$panel-border-bottom-width !default;
+$panel-group-panel-margin-bottom: math-sign(
+	$panel-border-bottom-width
+) !default;
 
 $panel-group-panel-unstyled: () !default;
 $panel-group-panel-unstyled: map-deep-merge(
@@ -115,11 +114,11 @@ $panel-group-sm: () !default;
 $panel-group-sm: map-deep-merge(
 	(
 		font-size: 0.875rem,
-		header: (
+		panel-header: (
 			padding-bottom: 0.5rem,
 			padding-top: 0.5rem,
 		),
-		title: (
+		panel-title: (
 			font-size: 0.875rem,
 		),
 		collapse-icon: (
@@ -151,7 +150,7 @@ $panel-group-flush-panel-unstyled: () !default;
 $panel-group-flush-panel-unstyled: map-deep-merge(
 	(
 		margin-bottom: 1.5rem,
-		body: (
+		panel-body: (
 			margin-bottom: 0,
 		),
 	),
@@ -166,12 +165,12 @@ $panel-secondary: () !default;
 $panel-secondary: map-deep-merge(
 	(
 		border-color: rgba($black, 0.125),
-		header: (
+		panel-header: (
 			background-color: $gray-100,
 			border-color: rgba($black, 0.125),
 			link: $panel-secondary-header-link,
 		),
-		footer: (
+		panel-footer: (
 			background-color: $gray-100,
 			border-color: rgba($black, 0.125),
 		),
@@ -187,12 +186,12 @@ $panel-unstyled: () !default;
 $panel-unstyled: map-deep-merge(
 	(
 		background-color: transparent,
-		border-radius: 0,
-		border-width: 0,
+		border-radius: 0px,
+		border-width: 0px,
 		margin-bottom: 1.5rem,
-		header: (
+		panel-header: (
 			border-color: $gray-500,
-			border-radius: 0,
+			border-radius: 0px,
 			border-style: solid,
 			border-width: 0 0 1px 0,
 			padding-left: 0,
@@ -204,10 +203,10 @@ $panel-unstyled: map-deep-merge(
 		collapse-icon: (
 			right: 0,
 		),
-		body: (
+		panel-body: (
 			padding: 1rem 0 0.1px 0,
 		),
-		footer: (
+		panel-footer: (
 			padding: 1rem 0 0.1px 0,
 		),
 	),

@@ -14,9 +14,9 @@ type TItems = Array<Array<TItem>>;
 function swapArrayItems(arrays: TItems, selectedIndexes: Array<number>) {
 	const [sourceArray, targetArray] = arrays;
 
-	const newTargetArray = [...targetArray];
+	const newTargetArray = [...targetArray!];
 
-	const newSourceArray = sourceArray.filter((item, index) => {
+	const newSourceArray = sourceArray!.filter((item, index) => {
 		if (selectedIndexes.includes(index)) {
 			newTargetArray.push(item);
 
@@ -101,7 +101,7 @@ interface IProps extends React.HTMLAttributes<HTMLDivElement> {
 	spritemap?: string;
 }
 
-const ClayDualListBox: React.FunctionComponent<IProps> = ({
+const ClayDualListBox = ({
 	ariaLabels = {
 		transferLTR: 'Transfer Item Left to Right',
 		transferRTL: 'Transfer Item Right to Left',
@@ -109,7 +109,7 @@ const ClayDualListBox: React.FunctionComponent<IProps> = ({
 	className,
 	disableLTR,
 	disableRTL,
-	items,
+	items = [[], []],
 	left = {},
 	onItemsChange,
 	right = {},
@@ -134,8 +134,8 @@ const ClayDualListBox: React.FunctionComponent<IProps> = ({
 
 	const [leftItems, rightItems] = items;
 
-	const selectedIndexesLeft = getSelectedIndexes(leftItems, leftSelected);
-	const selectedIndexesRight = getSelectedIndexes(rightItems, rightSelected);
+	const selectedIndexesLeft = getSelectedIndexes(leftItems!, leftSelected);
+	const selectedIndexesRight = getSelectedIndexes(rightItems!, rightSelected);
 
 	return (
 		<div {...otherProps} className={classNames(className, 'form-group')}>
@@ -143,16 +143,14 @@ const ClayDualListBox: React.FunctionComponent<IProps> = ({
 				<ClaySelectBox
 					className="clay-dual-listbox-item clay-dual-listbox-item-expand listbox-left"
 					id={left.id}
-					items={leftItems}
+					items={leftItems!}
 					label={left.label}
 					multiple
 					onItemsChange={(newLeftItems) =>
-						onItemsChange([newLeftItems, rightItems])
+						onItemsChange([newLeftItems, rightItems!])
 					}
 					onSelectChange={handleLeftSelectedChange}
-					showArrows
 					size={size}
-					spritemap={spritemap}
 					value={leftSelected}
 				/>
 
@@ -165,11 +163,11 @@ const ClayDualListBox: React.FunctionComponent<IProps> = ({
 						displayType="secondary"
 						onClick={() => {
 							const [arrayLeft, arrayRight] = swapArrayItems(
-								[leftItems, rightItems],
+								[leftItems!, rightItems!],
 								selectedIndexesLeft
 							);
 
-							onItemsChange([arrayLeft, arrayRight]);
+							onItemsChange([arrayLeft!, arrayRight!]);
 						}}
 						small
 						spritemap={spritemap}
@@ -184,11 +182,11 @@ const ClayDualListBox: React.FunctionComponent<IProps> = ({
 						displayType="secondary"
 						onClick={() => {
 							const [arrayRight, arrayLeft] = swapArrayItems(
-								[rightItems, leftItems],
+								[rightItems!, leftItems!],
 								selectedIndexesRight
 							);
 
-							onItemsChange([arrayLeft, arrayRight]);
+							onItemsChange([arrayLeft!, arrayRight!]);
 						}}
 						small
 						spritemap={spritemap}
@@ -199,14 +197,16 @@ const ClayDualListBox: React.FunctionComponent<IProps> = ({
 				<ClaySelectBox
 					className="clay-dual-listbox-item clay-dual-listbox-item-expand listbox-right"
 					id={right.id}
-					items={rightItems}
+					items={rightItems!}
 					label={right.label}
 					multiple
 					onItemsChange={(newRightItems) =>
-						onItemsChange([leftItems, newRightItems])
+						onItemsChange([leftItems!, newRightItems])
 					}
 					onSelectChange={handleRightSelectedChange}
+					showArrows
 					size={size}
+					spritemap={spritemap}
 					value={rightSelected}
 				/>
 			</div>

@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.65.0](https://github.com/liferay/clay/compare/v3.64.0...v3.65.0) (2022-07-11)
+
+**Note:** Version bump only for package @clayui/charts
+
+# [3.56.0](https://github.com/liferay/clay/compare/v3.55.0...v3.56.0) (2022-05-09)
+
+**Note:** Version bump only for package @clayui/charts
+
+# [3.40.0](https://github.com/matuzalemsteles/clay/compare/v3.39.0...v3.40.0) (2021-11-17)
+
+**Note:** Version bump only for package @clayui/charts
+
+# [3.39.0](https://github.com/matuzalemsteles/clay/compare/v3.38.0...v3.39.0) (2021-10-29)
+
+**Note:** Version bump only for package @clayui/charts
+
+# [3.38.0](https://github.com/matuzalemsteles/clay/compare/v3.37.0...v3.38.0) (2021-10-22)
+
+### Bug Fixes
+
+-   **@clayui/css:** remove `node-sass` and add new build file ([80f6ec2](https://github.com/matuzalemsteles/clay/commit/80f6ec2457b290865f5cf0c58f3dedb2bf822085))
+
+# [3.37.0](https://github.com/julien/clay/compare/v3.36.0...v3.37.0) (2021-10-06)
+
+**Note:** Version bump only for package @clayui/charts
+
 # [3.32.0](https://github.com/matuzalemsteles/clay/compare/v3.31.0...v3.32.0) (2021-07-28)
 
 **Note:** Version bump only for package @clayui/charts

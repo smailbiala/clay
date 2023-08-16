@@ -5,19 +5,31 @@
 
 import classNames from 'classnames';
 import React from 'react';
+import warning from 'warning';
 
-import ButtonGroup from './Group';
+import Group from './Group';
 
-export type DisplayType = null | 'primary' | 'secondary' | 'link' | 'unstyled';
+export type DisplayType =
+	| null
+	| 'primary'
+	| 'secondary'
+	| 'link'
+	| 'success'
+	| 'warning'
+	| 'danger'
+	| 'info'
+	| 'beta'
+	| 'beta-dark'
+	| 'unstyled';
 
-interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	/**
 	 * Flag to indicate if button is used within an alert component.
 	 */
 	alert?: boolean;
 
 	/**
-	 * Flag to indicate if link should be borderless.
+	 * Flag to indicate if the button should be borderless.
 	 */
 	borderless?: boolean;
 
@@ -27,7 +39,7 @@ interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	block?: boolean;
 
 	/**
-	 * Determines how to button is displayed.
+	 * Determines the button variant to use.
 	 */
 	displayType?: DisplayType;
 
@@ -37,12 +49,23 @@ interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	monospaced?: boolean;
 
 	/**
-	 * Flag to indicate if link need have an outline.
+	 * Flag to indicate if the button should use the outline variant.
 	 */
 	outline?: boolean;
 
 	/**
+	 * Flag to indicate if the button should be shaped like a pill.
+	 */
+	rounded?: boolean;
+
+	/**
+	 * Determines the size of a button.
+	 */
+	size?: 'xs' | 'sm';
+
+	/**
 	 * Indicates button should be a small variant.
+	 * @deprecated since v3.72.0 - use `size` instead.
 	 */
 	small?: boolean;
 }
@@ -58,32 +81,52 @@ const ClayButton = React.forwardRef<HTMLButtonElement, IProps>(
 			displayType = 'primary',
 			monospaced,
 			outline,
+			rounded,
+			size,
 			small,
 			type = 'button',
 			...otherProps
 		}: IProps,
 		ref
-	) => (
-		<button
-			className={classNames(className, 'btn', {
-				'alert-btn': alert,
-				'btn-block': block,
-				'btn-monospaced': monospaced,
-				'btn-outline-borderless': borderless,
-				'btn-sm': small,
-				[`btn-${displayType}`]: displayType && !outline && !borderless,
-				[`btn-outline-${displayType}`]:
-					displayType && (outline || borderless),
-			})}
-			ref={ref}
-			type={type}
-			{...otherProps}
-		>
-			{children}
-		</button>
-	)
+	) => {
+		const childArray = React.Children.toArray(children);
+
+		warning(
+			!(
+				childArray.length === 1 &&
+				// @ts-ignore
+				childArray[0].type?.displayName === 'ClayIcon' &&
+				typeof otherProps['aria-label'] !== 'string' &&
+				typeof otherProps['aria-labelledby'] !== 'string'
+			),
+			'Button Accessibility: Component has only the Icon declared. Define an `aria-label` or `aria-labelledby` attribute that labels the interactive button that screen readers can read. The `title` attribute is optional but consult your design team.'
+		);
+
+		return (
+			<button
+				className={classNames(className, 'btn', {
+					'alert-btn': alert,
+					'btn-block': block,
+					'btn-monospaced': monospaced,
+					'btn-outline-borderless': borderless,
+					'btn-sm': small && !size,
+					[`btn-${displayType}`]:
+						displayType && !outline && !borderless,
+					[`btn-outline-${displayType}`]:
+						displayType && (outline || borderless),
+					'rounded-pill': rounded,
+					[`btn-${size}`]: size,
+				})}
+				ref={ref}
+				type={type}
+				{...otherProps}
+			>
+				{children}
+			</button>
+		);
+	}
 );
 
 ClayButton.displayName = 'ClayButton';
 
-export default Object.assign(ClayButton, {Group: ButtonGroup});
+export default Object.assign(ClayButton, {Group});

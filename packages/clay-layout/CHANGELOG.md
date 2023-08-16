@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.93.0](https://github.com/liferay/clay/compare/v3.92.0...v3.93.0) (2023-04-19)
+
+### Features
+
+-   **@clayui/layout:** Adds the Sheet Row component ([1271df1](https://github.com/liferay/clay/commit/1271df1d57a169eb7e930428f17f87ac7dee030e))
+
+## [3.65.1](https://github.com/liferay/clay/compare/v3.65.0...v3.65.1) (2022-07-11)
+
+**Note:** Version bump only for package @clayui/layout
+
+# [3.65.0](https://github.com/liferay/clay/compare/v3.64.0...v3.65.0) (2022-07-11)
+
+**Note:** Version bump only for package @clayui/layout
+
+# [3.56.0](https://github.com/liferay/clay/compare/v3.55.0...v3.56.0) (2022-05-09)
+
+**Note:** Version bump only for package @clayui/layout
+
+# [3.40.0](https://github.com/liferay/clay/compare/v3.39.0...v3.40.0) (2021-11-17)
+
+**Note:** Version bump only for package @clayui/layout
+
+# [3.39.0](https://github.com/liferay/clay/compare/v3.38.0...v3.39.0) (2021-10-29)
+
+**Note:** Version bump only for package @clayui/layout
+
+# [3.38.0](https://github.com/liferay/clay/compare/v3.37.0...v3.38.0) (2021-10-22)
+
+**Note:** Version bump only for package @clayui/layout
+
+# [3.37.0](https://github.com/liferay/clay/compare/v3.36.0...v3.37.0) (2021-10-06)
+
+**Note:** Version bump only for package @clayui/layout
+
 # [3.32.0](https://github.com/liferay/clay/compare/v3.31.0...v3.32.0) (2021-07-28)
 
 **Note:** Version bump only for package @clayui/layout

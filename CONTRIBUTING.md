@@ -9,20 +9,30 @@ Here's a set of guidelines to contribute to Clay and its packages. Use your comm
 #### Table of Contents
 
 -   [What Should I Know Before I Get Started?](#what-should-i-know-before-i-get-started)
--   [Clay and Packages](#clay-and-packages)
+    -   [Clay and Packages](#clay-and-packages)
 -   [How Can I Contribute?](#how-can-i-contribute?)
--   [Reporting Bugs](#reporting-bugs)
--   [Your First Pull Request](#your-first-pull-request)
--   [Proposing a Change](#proposing-a-change)
--   [Sending a Pull Request](#sending-a-pull-request)
+    -   [Reporting Bugs](#reporting-bugs)
+        -   [Before Submitting a Bug Report](#before-submitting-a-bug-report)
+        -   [How Do I Submit a Good Bug Report?](#how-do-i-submit-a-good-bug-report)
+    -   [Your First Pull Request](#your-first-pull-request)
+    -   [Proposing a Change](#proposing-a-change)
+        -   [Before Submitting a Suggestion for Improvement](#before-submitting-a-suggestion-for-improvement)
+        -   [How Do I Submit a Suggestion for Improvement?](#how-do-i-submit-a-suggestion-for-improvement)
+    -   [Sending a Pull Request](#sending-a-pull-request)
+        -   [Before Sending a Pull Request](#before-sending-a-pull-request)
 -   [Style Guides](#style-guides)
--   [Git Commit Messages](#git-commit-messages)
--   [JavaScript Style Guide](#javascript-style-guide)
--   [CSS Guidelines](#css-guidelines)
--   [Documentation Style Guide](#documentation-style-guide)
+    -   [Git Commit Messages](#git-commit-messages)
+    -   [JavaScript Style Guide](#javascript-style-guide)
+    -   [CSS Guidelines](#css-guidelines)
+    -   [Documentation Style Guide](#documentation-style-guide)
 -   [Additional Notes](#additional-notes)
--   [Issue Labels](#issue-labels)
+    -   [Issue Labels](#issue-labels)
 -   [Release process](#release-process)
+    -   [Automated release](#automated-release)
+    -   [Manual release](#manual-release)
+        -   [Releasing individual packages](#releasing-individual-packages)
+        -   [Updating release in liferay-portal](#testing-local-changes-in-liferay-portal)
+-   [Testing local changes in liferay-portal](#testing-local-changes-in-liferay-portal)
 
 ## What Should I Know Before I Get Started?
 
@@ -203,6 +213,23 @@ You may want to use [Github search](https://help.github.com/articles/searching-i
 
 ## Release process
 
+The Clay release process is done every week, initially every Monday we are cutting a new version. The release is done in two steps, cutting a new version and publishing to NPM, and updating the packages in [liferay-portal](https://github.com/liferay/liferay-portal).
+
+Making a new release, it is recommended to follow the automated step instead of following the manual step.
+
+### Automated release
+
+The automated release is done through Github Actions, the action must be manually triggered to run the tests, visual tests with chromatic, cut the version and publish the packages.
+
+![](https://user-images.githubusercontent.com/13750819/172487793-a99ac4a9-9561-488e-a7dc-67245a0ed43c.png)
+
+1. Go to link https://github.com/liferay/clay/actions/workflows/release.yml
+2. Run the workflow
+
+> Sets the encoded version via input is optional. Just define if necessary.
+
+### Manual release
+
 To publish a new version for all packages that have updated, follow these steps:
 
 ```bash
@@ -220,6 +247,18 @@ git fetch $REMOTE --tags
 # based on its dependencies. The `--conventional-commits` flag should
 # automatically determine what version each package should be updated to
 lerna version --conventional-commits --no-push
+
+# WARNING: If you see that the previous commands suggests an
+# incorect version, for example a major version change, you
+# should use this command instead:
+# lerna version --no-push
+# and set the version manually.
+
+# Optionally, you might want to run `yarn checkDeps` to make sure the
+# dependencies are in sync. Before you do that, you'll also want to
+# remove any "old" build files, which can be done with
+# find packages -mindepth 2 -maxdepth 2 -name lib -type d | xargs rm -rf {}
+# yarn checkDeps
 
 # Create draft pull-request against `stable` (not intended to be merged)
 # to the clay repo; this is to see CI green one last time.
@@ -240,7 +279,7 @@ lerna publish from-package
 
 > NOTE: Publishing new packages automatically with Lerna is sometimes a problem, if you have problems try to publish the package separately manually.
 
-### Releasing individual packages
+#### Releasing individual packages
 
 In a rare case you may want to release only one specific package. Follow these steps:
 
@@ -294,7 +333,7 @@ Common Issues
 -   You must have "publish" access for @clayui packages on NPM
 -   Wrong node version. ([yarn build doesn't work on node v12](https://github.com/liferay/clay/issues/2053))
 
-## Updating release in [liferay-portal](https://github.com/liferay/liferay-portal)
+#### Updating release in [liferay-portal](https://github.com/liferay/liferay-portal)
 
 ```bash
 # Navigate
@@ -308,6 +347,10 @@ cd {PORTAL_ROOT}/modules/apps/frontend-taglib/frontend-taglib-clay
 # and it being seen on the registry. Make sure to verify all versions
 # have been properly updated in the package.json.
 ncu '/@clayui/' -u
+
+# If you don't want to install `npm-check-updates` as a global package,
+# you can also use this command
+# npx npm-check-updates '/@clayui/' -u
 
 # Run source formatter
 #
@@ -346,4 +389,60 @@ cd {PORTAL_ROOT}/modules
 #     the linked issues. The LPS is typically called "Update Clay Dependencies"
 
 # Lastly, share the release information in our public Slack channel!
+```
+
+## Testing local changes in liferay-portal
+
+When working on an issue, you might want to test your changes before submitting
+a pull request.
+
+To test your changes in a liferay-portal (>= 7.3.x) environment you'll first need
+to install the [verdaccio](https://verdaccio.org/) npm package. **Warning** Please
+note that we don't maintain this tool and won't provide support for it. For usage
+instructions, doubts or any issues that you have, please consult the [project's page](https://github.com/verdaccio/verdaccio)
+on GitHub.
+
+```bash
+# First install the verdaccio package globally
+npm i -g verdaccio
+
+# Alternatively, if you are using yarn, you can issue this command
+# yarn global add verdaccio
+
+# Once installed, you'll need to leave verdaccio running locally
+# If everything is correct, it will use http://localhost:4873 by default
+verdaccio
+
+# In order to publish packages, you'll need to open a new terminal window
+# and create a user and log in
+npm adduser --registry http://localhost:4873
+
+# Let's assume you have made some changes in the clay-button component,
+# in order to test those changes, you'll need to publish the package locally.
+
+# IMPORTANT:
+# Publishing an "existing version" of a module will fail;
+# in order to fix that, you'll need to change the "version" field in the
+# package.json file of the module you want to publish.
+# Once you are sure that the version you are going to publish is not
+# already published on npmjs.com, you can publish the package locally
+
+cd packages/clay-button
+npm publish --registry http://localhost:4873
+
+# If you are using yarn, you can issue this command instead
+# YARN_REGISTRY=http://localhost:4873 yarn publish
+
+# Now navigate to the frontend-taglib-clay module of your Liferay Portal
+cd {PORTAL_ROOT}/modules/apps/frontend-taglib/frontend-taglib-clay
+
+# Install the @clayui/button package from your local registry
+YARN_REGISTRY=http://localhost:4873 yarn add @clayui/button
+
+# Before deploying, you shoud stop the tomcat that's running your Liferay Portal
+
+# Deploy the module
+gradlew deploy -a
+
+# Restart the tomcat
 ```

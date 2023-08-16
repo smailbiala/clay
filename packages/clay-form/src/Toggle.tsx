@@ -31,6 +31,7 @@ const ClayToggle = React.forwardRef<HTMLLabelElement, IToggleProps>(
 			label,
 			onChange,
 			onToggle,
+			role = 'switch',
 			spritemap,
 			symbol,
 			toggled,
@@ -62,15 +63,16 @@ const ClayToggle = React.forwardRef<HTMLLabelElement, IToggleProps>(
 						className="toggle-switch-check"
 						disabled={disabled}
 						id={id}
-						onChange={(e) => {
+						onChange={(event) => {
 							if (onChange) {
-								onChange(e);
+								onChange(event);
 							}
 
 							if (onToggle) {
 								onToggle(!toggled);
 							}
 						}}
+						role={role}
 						type={type}
 						value={value}
 					/>

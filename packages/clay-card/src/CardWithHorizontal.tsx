@@ -14,7 +14,9 @@ import React from 'react';
 import ClayCard from './Card';
 import {ClayCardHorizontal} from './CardHorizontal';
 
-interface IProps extends React.BaseHTMLAttributes<HTMLDivElement> {
+import type {ButtonWithIconProps} from '@clayui/button';
+
+export interface IProps extends React.BaseHTMLAttributes<HTMLDivElement> {
 	actions?: React.ComponentProps<typeof ClayDropDownWithItems>['items'];
 
 	/**
@@ -30,7 +32,10 @@ interface IProps extends React.BaseHTMLAttributes<HTMLDivElement> {
 	/**
 	 * Props to add to the dropdown trigger element
 	 */
-	dropDownTriggerProps?: React.HTMLAttributes<HTMLButtonElement>;
+	dropDownTriggerProps?: Omit<
+		ButtonWithIconProps,
+		'symbol' | 'spritemap' | 'displayType' | 'className'
+	>;
 
 	/**
 	 * Path or URL to item
@@ -63,11 +68,14 @@ interface IProps extends React.BaseHTMLAttributes<HTMLDivElement> {
 	title: string;
 }
 
-export const ClayCardWithHorizontal: React.FunctionComponent<IProps> = ({
+export const ClayCardWithHorizontal = ({
+	'aria-label': ariaLabel,
 	actions,
 	checkboxProps = {},
 	disabled,
-	dropDownTriggerProps = {},
+	dropDownTriggerProps = {
+		'aria-label': 'More actions',
+	},
 	href,
 	onSelectChange,
 	selected = false,
@@ -87,6 +95,7 @@ export const ClayCardWithHorizontal: React.FunctionComponent<IProps> = ({
 
 				<ClayLayout.ContentCol expand gutters>
 					<ClayCard.Description
+						aria-label={ariaLabel ?? title}
 						disabled={disabled}
 						displayType="title"
 						href={href}
@@ -102,7 +111,7 @@ export const ClayCardWithHorizontal: React.FunctionComponent<IProps> = ({
 							spritemap={spritemap}
 							trigger={
 								<ClayButtonWithIcon
-									{...dropDownTriggerProps}
+									{...(dropDownTriggerProps as ButtonWithIconProps)}
 									className="component-action"
 									disabled={disabled}
 									displayType="unstyled"

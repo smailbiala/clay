@@ -1,13 +1,13 @@
 $table-bg: $white !default;
 $table-accent-bg: $gray-100 !default;
-$table-hover-bg: lighten($component-active-bg, 44.9) !default;
+$table-hover-bg: clay-lighten($component-active-bg, 44.9) !default;
 $table-border-color: $gray-300 !default;
 $table-font-size: 0.875rem !default;
 
 $table-disabled-color: $gray-500 !default;
 
 $table-head-bg: $white !default;
-$table-head-border-bottom-width: 1px !default;
+$table-head-border-bottom-width: 0 !default;
 $table-head-color: $gray-600 !default;
 $table-head-font-weight: $font-weight-semi-bold !default;
 
@@ -17,9 +17,13 @@ $table-head-link: map-deep-merge(
 		border-radius: 1px,
 		color: $gray-600,
 		transition: box-shadow 0.15s ease-in-out,
-		hover-color: $gray-900,
-		focus-box-shadow: $component-focus-box-shadow,
-		focus-outline: 0,
+		hover: (
+			color: $gray-900,
+		),
+		focus: (
+			box-shadow: $component-focus-box-shadow,
+			outline: 0,
+		),
 	),
 	$table-head-link
 );
@@ -64,11 +68,13 @@ $table-title-link: () !default;
 $table-title-link: map-deep-merge(
 	(
 		border-radius: 1px,
-		display: inline-block,
+		display: inline-flex,
 		max-width: 100%,
 		transition: box-shadow 0.15s ease-in-out,
-		focus-box-shadow: $component-focus-box-shadow,
-		focus-outline: 0,
+		focus: (
+			box-shadow: $component-focus-box-shadow,
+			outline: 0,
+		),
 	),
 	$table-title-link
 );
@@ -89,14 +95,20 @@ $table-action-link: map-deep-merge(
 	(
 		color: $gray-600,
 		font-size: 1rem,
-		transition: $btn-transition,
-		hover-bg: rgba(0, 0, 0, 0.02),
-		hover-color: $gray-900,
-		focus-bg: rgba(0, 0, 0, 0.02),
-		focus-color: $gray-900,
-		focus-box-shadow: $component-focus-box-shadow,
-		focus-outline: 0,
-		active-bg: rgba(0, 0, 0, 0.04),
+		transition: $component-transition,
+		hover: (
+			background-color: rgba(0, 0, 0, 0.02),
+			color: $gray-900,
+		),
+		focus: (
+			background-color: rgba(0, 0, 0, 0.02),
+			color: $gray-900,
+			box-shadow: $component-focus-box-shadow,
+			outline: 0,
+		),
+		active: (
+			background-color: rgba(0, 0, 0, 0.04),
+		),
 	),
 	$table-action-link
 );
@@ -108,12 +120,16 @@ $table-link: map-deep-merge(
 	(
 		border-radius: 1px,
 		color: $gray-900,
-		display: inline-block,
+		display: inline-flex,
 		max-width: 100%,
 		transition: box-shadow 0.15s ease-in-out,
-		hover-color: $gray-900,
-		focus-box-shadow: $component-focus-box-shadow,
-		focus-outline: 0,
+		hover: (
+			color: $gray-900,
+		),
+		focus: (
+			box-shadow: $component-focus-box-shadow,
+			outline: 0,
+		),
 	),
 	$table-link
 );
@@ -151,12 +167,16 @@ $table-list-title-link: map-deep-merge(
 	(
 		border-radius: 1px,
 		color: $gray-900,
-		display: inline-block,
+		display: inline-flex,
 		max-width: 100%,
 		transition: box-shadow 0.15s ease-in-out,
-		hover-color: $gray-900,
-		focus-box-shadow: $component-focus-box-shadow,
-		focus-outline: 0,
+		hover: (
+			color: $gray-900,
+		),
+		focus: (
+			box-shadow: $component-focus-box-shadow,
+			outline: 0,
+		),
 	),
 	$table-list-title-link
 );
@@ -168,12 +188,16 @@ $table-list-link: map-deep-merge(
 	(
 		border-radius: 1px,
 		color: $gray-900,
-		display: inline-block,
+		display: inline-flex,
 		max-width: 100%,
 		transition: box-shadow 0.15s ease-in-out,
-		hover-color: $gray-900,
-		focus-box-shadow: $component-focus-box-shadow,
-		focus-outline: 0,
+		hover: (
+			color: $gray-900,
+		),
+		focus: (
+			box-shadow: $component-focus-box-shadow,
+			outline: 0,
+		),
 	),
 	$table-list-link
 );
@@ -185,14 +209,20 @@ $table-list-action-link: map-deep-merge(
 	(
 		color: $gray-600,
 		font-size: 1rem,
-		transition: $btn-transition,
-		hover-bg: rgba(0, 0, 0, 0.02),
-		hover-color: $gray-900,
-		focus-bg: rgba(0, 0, 0, 0.02),
-		focus-color: $gray-900,
-		focus-box-shadow: $component-focus-box-shadow,
-		focus-outline: 0,
-		active-bg: rgba(0, 0, 0, 0.04),
+		transition: $component-transition,
+		hover: (
+			background-color: rgba(0, 0, 0, 0.02),
+			color: $gray-900,
+		),
+		focus: (
+			background-color: rgba(0, 0, 0, 0.02),
+			color: $gray-900,
+			box-shadow: $component-focus-box-shadow,
+			outline: 0,
+		),
+		active: (
+			background-color: rgba(0, 0, 0, 0.04),
+		),
 	),
 	$table-list-action-link
 );

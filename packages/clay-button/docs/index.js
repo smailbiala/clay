@@ -107,7 +107,7 @@ import ClayIcon from '@clayui/icon;`;
 const ButtonIconCode = `const Component = () => {
 	return (
 		<>
-			<ClayButtonWithIcon spritemap={spritemap} symbol="times" />
+			<ClayButtonWithIcon aria-label="Close" spritemap={spritemap} symbol="times" title="Close" />
 
 			<br />
 			<br />
@@ -132,4 +132,70 @@ const ButtonIcon = () => {
 	return <Editor code={code} imports={buttonIconImportsCode} scope={scope} />;
 };
 
-export {ButtonDisplayTypes, ButtonGroup, ButtonIcon};
+const buttonBetaImportsCode = `import ClayButton from '@clayui/button';
+import ClayIcon from '@clayui/icon;'`;
+
+const ButtonBetaCode = `const Component = () => {
+	return (
+		<>
+			<ClayButton className="rounded-circle" displayType="beta" size="xs">
+				<span className="inline-item">
+					{'Beta'}
+				</span>
+
+				<span className="inline-item inline-item-after">
+					<ClayIcon spritemap={spritemap} symbol="info-panel-open" />
+				</span>
+			</ClayButton>
+		</>
+	);
+}
+
+render(<Component />);`;
+
+const ButtonBeta = () => {
+	const scope = {ClayButton, ClayButtonWithIcon, ClayIcon};
+	const code = ButtonBetaCode;
+
+	return <Editor code={code} imports={buttonBetaImportsCode} scope={scope} />;
+};
+
+const buttonBetaDarkImportsCode = `import ClayButton from '@clayui/button';
+import ClayIcon from '@clayui/icon;'`;
+
+const ButtonBetaDarkCode = `const Component = () => {
+	return (
+		<>
+			<div className="bg-dark p-2">
+				<ClayButton className="rounded-circle" displayType="beta-dark" size="xs">
+					<span className="inline-item">
+						{'Beta'}
+					</span>
+
+					<span className="inline-item inline-item-after">
+						<ClayIcon spritemap={spritemap} symbol="info-panel-open" />
+					</span>
+				</ClayButton>
+			</div>
+		</>
+	);
+}
+
+render(<Component />);`;
+
+const ButtonBetaDark = () => {
+	const scope = {ClayButton, ClayButtonWithIcon, ClayIcon};
+	const code = ButtonBetaDarkCode;
+
+	return (
+		<Editor code={code} imports={buttonBetaDarkImportsCode} scope={scope} />
+	);
+};
+
+export {
+	ButtonDisplayTypes,
+	ButtonGroup,
+	ButtonIcon,
+	ButtonBeta,
+	ButtonBetaDark,
+};

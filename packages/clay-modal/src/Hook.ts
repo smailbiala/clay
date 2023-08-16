@@ -20,9 +20,10 @@ const useUserInteractions = (
 
 	const getFocusableNodes = () => {
 		if (modalBodyElementRef.current) {
-			const nodes = modalBodyElementRef.current.querySelectorAll(
-				FOCUSABLE_ELEMENTS
-			);
+			const nodes =
+				modalBodyElementRef.current.querySelectorAll(
+					FOCUSABLE_ELEMENTS
+				);
 
 			return Object.keys(nodes).map((key) => nodes[key]);
 		}
@@ -83,9 +84,9 @@ const useUserInteractions = (
 
 		if (
 			event.target === modalElementRef.current &&
-			(mouseEventTargetRef.current === event.target ||
-				mouseEventTargetRef.current === null)
+			mouseEventTargetRef.current === event.target
 		) {
+			mouseEventTargetRef.current = null;
 			onClick();
 		}
 

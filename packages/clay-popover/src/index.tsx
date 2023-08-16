@@ -6,11 +6,13 @@
 import {
 	ClayPortal,
 	IPortalBaseProps,
+	InternalDispatch,
 	doAlign,
 	observeRect,
+	useControlledState,
 } from '@clayui/shared';
 import classNames from 'classnames';
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef} from 'react';
 
 export const ALIGN_POSITIONS = [
 	'top',
@@ -42,6 +44,28 @@ const ALIGNMENTS_MAP = {
 	'top-right': ['br', 'tr'],
 } as const;
 
+type Point = typeof ALIGNMENTS_MAP[keyof typeof ALIGNMENTS_MAP];
+
+const BOTTOM_OFFSET = [0, 4] as const;
+const LEFT_OFFSET = [-4, 0] as const;
+const RIGHT_OFFSET = [4, 0] as const;
+const TOP_OFFSET = [0, -4] as const;
+
+const OFFSET_MAP = {
+	bctc: TOP_OFFSET,
+	blbr: RIGHT_OFFSET,
+	bltl: TOP_OFFSET,
+	brbl: LEFT_OFFSET,
+	brtr: TOP_OFFSET,
+	clcr: RIGHT_OFFSET,
+	crcl: LEFT_OFFSET,
+	tcbc: BOTTOM_OFFSET,
+	tlbl: BOTTOM_OFFSET,
+	tltr: RIGHT_OFFSET,
+	trbr: BOTTOM_OFFSET,
+	trtl: LEFT_OFFSET,
+};
+
 interface IProps extends React.HTMLAttributes<HTMLDivElement> {
 	/**
 	 * Position in which the tooltip will be aligned to the element.
@@ -49,9 +73,20 @@ interface IProps extends React.HTMLAttributes<HTMLDivElement> {
 	alignPosition?: typeof ALIGN_POSITIONS[number];
 
 	/**
+	 * Flag to indicate if the popover should be closed when
+	 * clicking outside, only works if used with trigger
+	 */
+	closeOnClickOutside?: boolean;
+
+	/**
 	 * Props to add to the <ClayPortal/>.
 	 */
 	containerProps?: IPortalBaseProps;
+
+	/**
+	 * Sets the default value of show (uncontrolled).
+	 */
+	defaultShow?: boolean;
 
 	/**
 	 * Flag to indicate if container should not be scrollable
@@ -59,21 +94,35 @@ interface IProps extends React.HTMLAttributes<HTMLDivElement> {
 	disableScroll?: boolean;
 
 	/**
-	 * Flag to indicate if tooltip is displayed.
+	 * Appends the type to `popover-`
+	 */
+	displayType?: string;
+
+	/**
+	 * Flag to indicate if tooltip is displayed (controlled).
 	 */
 	show?: boolean;
 
 	/**
-	 * Callback for when the `show` prop changes.
+	 * Callback for setting the offset of the popover from the trigger.
 	 */
-	onShowChange?: (val: boolean) => void;
+	onOffset?: (points: Point) => [number, number];
+
+	/**
+	 * Callback for when the `show` prop changes (controlled).
+	 */
+	onShowChange?: InternalDispatch<boolean>;
+
+	/**
+	 * Sets the size of the popover.
+	 */
+	size?: 'lg';
 
 	/**
 	 * React element that the popover will align to when clicked.
 	 */
-	trigger?: React.ReactElement & {
-		ref?: (node: HTMLButtonElement | null) => void;
-	};
+	trigger?: React.ReactElement &
+		Omit<React.RefAttributes<HTMLButtonElement>, 'key'>;
 
 	/**
 	 * Content to display in the header of the popover.
@@ -87,17 +136,33 @@ const ClayPopover = React.forwardRef<HTMLDivElement, IProps>(
 			alignPosition = 'bottom',
 			children,
 			className,
+			closeOnClickOutside = false,
 			containerProps = {},
+			defaultShow = false,
 			disableScroll = false,
+			displayType,
 			header,
+			onOffset = (points) =>
+				OFFSET_MAP[points.join('') as keyof typeof OFFSET_MAP] as [
+					number,
+					number
+				],
 			onShowChange,
-			show: externalShow = false,
+			show,
+			size,
 			trigger,
 			...otherProps
 		}: IProps,
 		ref
 	) => {
-		const [internalShow, internalSetShow] = useState(externalShow);
+		const [internalShow, setShow] = useControlledState({
+			defaultName: 'defaultShow',
+			defaultValue: defaultShow,
+			handleName: 'onShowChange',
+			name: 'show',
+			onChange: onShowChange,
+			value: show,
+		});
 
 		const triggerRef = useRef<HTMLElement | null>(null);
 		const popoverRef = useRef<HTMLElement | null>(null);
@@ -107,20 +172,15 @@ const ClayPopover = React.forwardRef<HTMLDivElement, IProps>(
 			ref = popoverRef as React.Ref<HTMLDivElement>;
 		}
 
-		const show = externalShow ? externalShow : internalShow;
-		const setShow = onShowChange ? onShowChange : internalSetShow;
-
 		const align = useCallback(() => {
 			if (
 				(ref as React.RefObject<HTMLElement>).current &&
 				triggerRef.current
 			) {
-				const points = ALIGNMENTS_MAP[alignPosition] as [
-					string,
-					string
-				];
+				const points = ALIGNMENTS_MAP[alignPosition];
 
 				doAlign({
+					offset: onOffset(points),
 					points,
 					sourceElement: (ref as React.RefObject<HTMLElement>)
 						.current!,
@@ -133,7 +193,7 @@ const ClayPopover = React.forwardRef<HTMLDivElement, IProps>(
 			if (trigger) {
 				align();
 			}
-		}, [align, show]);
+		}, [align, internalShow]);
 
 		useEffect(() => {
 			if (trigger && triggerRef.current) {
@@ -142,10 +202,57 @@ const ClayPopover = React.forwardRef<HTMLDivElement, IProps>(
 		}, [align]);
 
 		useEffect(() => {
-			if (!disableScroll && popoverScrollerRef.current && show) {
+			if (!disableScroll && popoverScrollerRef.current && internalShow) {
 				popoverScrollerRef.current.focus();
 			}
-		}, [disableScroll, popoverScrollerRef, show]);
+		}, [disableScroll, popoverScrollerRef, internalShow]);
+
+		useEffect(() => {
+			if (closeOnClickOutside && trigger) {
+				const handleClick = (event: MouseEvent) => {
+					const nodeRefs = [
+						popoverRef,
+						popoverScrollerRef,
+						triggerRef,
+					];
+
+					const nodes: Array<Node> = (
+						Array.isArray(nodeRefs) ? nodeRefs : [nodeRefs]
+					)
+						.filter((ref) => ref.current)
+						.map((ref) => ref.current!);
+
+					if (
+						event.target instanceof Node &&
+						!nodes.find((element) =>
+							element.contains(event.target as Node)
+						)
+					) {
+						setShow(false);
+					}
+				};
+
+				window.addEventListener('mousedown', handleClick);
+
+				return () => {
+					window.removeEventListener('mousedown', handleClick);
+				};
+			}
+		}, [closeOnClickOutside, trigger]);
+
+		useEffect(() => {
+			const handleKeyDown = (event: KeyboardEvent) => {
+				if (event.key === 'Escape') {
+					setShow(false);
+				}
+			};
+
+			window.addEventListener('keydown', handleKeyDown);
+
+			return () => {
+				window.removeEventListener('keydown', handleKeyDown);
+			};
+		}, []);
 
 		let content = (
 			<div
@@ -153,7 +260,11 @@ const ClayPopover = React.forwardRef<HTMLDivElement, IProps>(
 					className,
 					'popover',
 					`clay-popover-${alignPosition}`,
-					{show}
+					{
+						[`popover-${displayType}`]: displayType,
+						'popover-width-lg': size === 'lg',
+						show: internalShow,
+					}
 				)}
 				ref={ref as React.RefObject<HTMLDivElement>}
 				{...otherProps}
@@ -178,12 +289,11 @@ const ClayPopover = React.forwardRef<HTMLDivElement, IProps>(
 			content = (
 				<>
 					{React.cloneElement(trigger, {
-						onClick: (e: any) => {
+						onClick: (event: any) => {
 							if (trigger.props.onClick) {
-								trigger.props.onClick(e);
+								trigger.props.onClick(event);
 							}
-
-							setShow(!show);
+							setShow(!internalShow);
 						},
 						ref: (node: HTMLButtonElement) => {
 							if (node) {
@@ -192,12 +302,16 @@ const ClayPopover = React.forwardRef<HTMLDivElement, IProps>(
 								const {ref} = trigger;
 								if (typeof ref === 'function') {
 									ref(node);
+								} else if (ref) {
+									(
+										ref as React.MutableRefObject<HTMLButtonElement>
+									).current = node;
 								}
 							}
 						},
 					})}
 
-					{show && (
+					{internalShow && (
 						<ClayPortal {...containerProps}>{content}</ClayPortal>
 					)}
 				</>

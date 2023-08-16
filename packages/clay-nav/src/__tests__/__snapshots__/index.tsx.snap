@@ -1,15 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ClayNav renders 1`] = `
-<div>
-  <ul
-    class="nav"
-  >
-    <div />
-  </ul>
-</div>
-`;
-
 exports[`ClayVerticalNav renders 1`] = `
 <div>
   <nav
@@ -38,12 +28,17 @@ exports[`ClayVerticalNav renders 1`] = `
       class="collapse menubar-collapse"
     >
       <ul
+        aria-orientation="vertical"
         class="nav nav-nested"
+        role="menubar"
       >
         <li
           class="nav-item"
+          role="none"
         >
           <button
+            aria-expanded="true"
+            aria-haspopup="true"
             class="nav-link collapse-icon btn btn-unstyled"
             role="button"
             type="button"
@@ -76,23 +71,24 @@ exports[`ClayVerticalNav renders 1`] = `
               </svg>
             </span>
           </button>
-          <div>
-            <ul
-              class="nav nav-stacked"
+          <ul
+            class="nav nav-stacked"
+            role="menu"
+          >
+            <li
+              class="nav-item"
+              role="none"
             >
-              <li
-                class="nav-item"
+              <a
+                class="nav-link collapsed"
+                href="#nested1"
+                role="menuitem"
+                tabindex="-1"
               >
-                <a
-                  class="nav-link"
-                  href="#nested1"
-                  role="button"
-                >
-                  Nested1
-                </a>
-              </li>
-            </ul>
-          </div>
+                Nested1
+              </a>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>

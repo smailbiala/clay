@@ -10,8 +10,9 @@
 
 .multi-step-indicator-label-bottom {
 	.multi-step-item {
-		padding-bottom: $multi-step-indicator-label-font-size *
-			$line-height-base;
+		padding-bottom: calc(
+			#{$multi-step-indicator-label-font-size} * #{$line-height-base}
+		);
 	}
 
 	.multi-step-indicator-label {
@@ -21,25 +22,23 @@
 
 .multi-step-indicator-label-top {
 	.multi-step-item {
-		padding-top: $multi-step-indicator-label-font-size * $line-height-base;
+		padding-top: calc(
+			#{$multi-step-indicator-label-font-size} * #{$line-height-base}
+		);
 	}
 
 	.multi-step-indicator-label {
-		bottom: $multi-step-icon-size + $multi-step-divider-height;
+		bottom: calc(#{$multi-step-icon-size} + #{$multi-step-divider-height});
 	}
 }
 
 .multi-step-title-center {
+	@include clay-css($multi-step-title-center);
+
 	.multi-step-title {
-		margin-left: $multi-step-icon-size / 2;
-		max-width: $multi-step-title-max-width;
-		overflow: hidden;
-		position: relative;
-		text-align: center;
-		text-overflow: ellipsis;
-		transform: translateX(-50%);
-		white-space: nowrap;
-		width: auto;
+		@include clay-text-typography(
+			map-get($multi-step-title-center, multi-step-title)
+		);
 	}
 }
 
@@ -59,7 +58,9 @@
 			@if ($multi-step-icon-active-bg-image) {
 				&[data-multi-step-icon] {
 					&:before {
-						content: normal;
+						// https://issues.liferay.com/browse/LPS-147457
+
+						content: none;
 					}
 				}
 			}
@@ -97,7 +98,9 @@
 
 				&[data-multi-step-icon] {
 					&:before {
-						content: normal;
+						// https://issues.liferay.com/browse/LPS-147457
+
+						content: none;
 					}
 				}
 
@@ -111,6 +114,45 @@
 
 		.multi-step-divider {
 			background-color: $multi-step-divider-complete-bg;
+		}
+	}
+
+	&.error {
+		@include clay-css($multi-step-item-error);
+
+		.multi-step-title {
+			@include clay-css(
+				map-get($multi-step-item-error, multi-step-title)
+			);
+		}
+
+		.multi-step-icon {
+			$_multi-step-icon: setter(
+				map-get($multi-step-item-error, multi-step-icon)
+			);
+
+			@include clay-css($_multi-step-icon);
+
+			&[data-multi-step-icon] {
+				$_data-multi-step-icon: setter(
+					map-get($_multi-step-icon, data-multi-step-icon),
+					()
+				);
+
+				&::before {
+					@include clay-css(map-get($_data-multi-step-icon, before));
+				}
+			}
+
+			.lexicon-icon {
+				@include clay-css(map-get($_multi-step-icon, lexicon-icon));
+			}
+		}
+
+		.multi-step-divider {
+			@include clay-css(
+				map-get($multi-step-item-error, multi-step-divider)
+			);
 		}
 	}
 
@@ -132,7 +174,9 @@
 			@if ($multi-step-icon-disabled-bg-image) {
 				&[data-multi-step-icon] {
 					&:before {
-						content: normal;
+						// https://issues.liferay.com/browse/LPS-147457
+
+						content: none;
 					}
 				}
 			}
@@ -170,14 +214,13 @@
 	background-color: $multi-step-divider-bg;
 	height: $multi-step-divider-height;
 	margin-left: $multi-step-icon-size;
-	margin-top: -$multi-step-divider-height;
+	margin-top: math-sign($multi-step-divider-height);
 	position: relative;
 	top: $multi-step-divider-top;
 }
 
 .multi-step-indicator {
-	position: relative;
-	width: $multi-step-indicator-width;
+	@include clay-css($multi-step-indicator);
 
 	.dropdown-item-indicator,
 	.dropdown-item-indicator-start,
@@ -194,21 +237,18 @@
 	}
 
 	.multi-step-indicator-label {
-		color: $multi-step-indicator-label-color;
-		font-size: $multi-step-indicator-label-font-size;
-		font-weight: $multi-step-indicator-label-font-weight;
-		left: 50%;
-		max-width: $multi-step-indicator-label-max-width;
-		position: absolute;
-		transform: translateX(-50%);
-
-		@include text-truncate;
+		@include clay-css(
+			map-get($multi-step-indicator, multi-step-indicator-label)
+		);
 	}
 }
 
 .multi-step-icon {
 	align-items: center;
 	background-color: $multi-step-icon-bg;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: $multi-step-icon-font-size;
 	border-color: $multi-step-icon-border-color;
 	border-radius: $multi-step-icon-border-radius;
 	border-style: $multi-step-icon-border-style;
@@ -224,7 +264,9 @@
 	padding-left: $multi-step-icon-padding-left;
 	padding-right: $multi-step-icon-padding-right;
 	padding-top: $multi-step-icon-padding-top;
-	transition: $multi-step-icon-transition;
+
+	@include transition($multi-step-icon-transition);
+
 	width: $multi-step-icon-size;
 
 	&:hover {
@@ -241,8 +283,8 @@
 		text-decoration: $multi-step-icon-focus-text-decoration;
 	}
 
-	&[data-multi-step-icon]:before {
-		content: attr(data-multi-step-icon);
+	&[data-multi-step-icon]::before {
+		content: $data-multi-step-icon-before-content;
 		height: $multi-step-icon-size;
 		line-height: $multi-step-icon-size;
 		text-align: center;
@@ -337,9 +379,10 @@
 		.multi-step-item {
 			margin-bottom: 0;
 			min-width: $multi-step-icon-size;
-			padding-top: $multi-step-title-font-size +
-				$multi-step-title-margin-bottom +
-				($multi-step-divider-height / 2);
+			padding-top: calc(
+				#{$multi-step-title-font-size} + #{$multi-step-title-margin-bottom} +
+					(#{$multi-step-divider-height} * 0.5)
+			);
 		}
 
 		.multi-step-title {

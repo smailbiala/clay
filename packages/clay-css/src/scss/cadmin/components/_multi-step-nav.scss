@@ -31,17 +31,7 @@
 }
 
 .multi-step-title-center {
-	.multi-step-title {
-		margin-left: $cadmin-multi-step-icon-size / 2;
-		max-width: $cadmin-multi-step-title-max-width;
-		overflow: hidden;
-		position: relative;
-		text-align: center;
-		text-overflow: ellipsis;
-		transform: translateX(-50%);
-		white-space: nowrap;
-		width: auto;
-	}
+	@include clay-map-to-css($cadmin-multi-step-title-center);
 }
 
 .multi-step-item {
@@ -60,7 +50,7 @@
 			@if ($cadmin-multi-step-icon-active-bg-image) {
 				&[data-multi-step-icon] {
 					&:before {
-						content: normal;
+						content: none;
 					}
 				}
 			}
@@ -98,7 +88,7 @@
 
 				&[data-multi-step-icon] {
 					&:before {
-						content: normal;
+						content: none;
 					}
 				}
 
@@ -112,6 +102,45 @@
 
 		.multi-step-divider {
 			background-color: $cadmin-multi-step-divider-complete-bg;
+		}
+	}
+
+	&.error {
+		@include clay-css($cadmin-multi-step-item-error);
+
+		.multi-step-title {
+			@include clay-css(
+				map-get($cadmin-multi-step-item-error, multi-step-title)
+			);
+		}
+
+		.multi-step-icon {
+			$_multi-step-icon: setter(
+				map-get($cadmin-multi-step-item-error, multi-step-icon)
+			);
+
+			@include clay-css($_multi-step-icon);
+
+			&[data-multi-step-icon] {
+				$_data-multi-step-icon: setter(
+					map-get($_multi-step-icon, data-multi-step-icon),
+					()
+				);
+
+				&::before {
+					@include clay-css(map-get($_data-multi-step-icon, before));
+				}
+			}
+
+			.lexicon-icon {
+				@include clay-css(map-get($_multi-step-icon, lexicon-icon));
+			}
+		}
+
+		.multi-step-divider {
+			@include clay-css(
+				map-get($cadmin-multi-step-item-error, multi-step-divider)
+			);
 		}
 	}
 
@@ -133,7 +162,7 @@
 			@if ($cadmin-multi-step-icon-disabled-bg-image) {
 				&[data-multi-step-icon] {
 					&:before {
-						content: normal;
+						content: none;
 					}
 				}
 			}
@@ -171,7 +200,7 @@
 	background-color: $cadmin-multi-step-divider-bg;
 	height: $cadmin-multi-step-divider-height;
 	margin-left: $cadmin-multi-step-icon-size;
-	margin-top: -$cadmin-multi-step-divider-height;
+	margin-top: math-sign($cadmin-multi-step-divider-height);
 	position: relative;
 	top: $cadmin-multi-step-divider-top;
 }
@@ -225,7 +254,9 @@
 	padding-left: $cadmin-multi-step-icon-padding-left;
 	padding-right: $cadmin-multi-step-icon-padding-right;
 	padding-top: $cadmin-multi-step-icon-padding-top;
-	transition: $cadmin-multi-step-icon-transition;
+
+	@include transition($cadmin-multi-step-icon-transition);
+
 	width: $cadmin-multi-step-icon-size;
 
 	&:hover {
@@ -340,7 +371,7 @@
 			min-width: $cadmin-multi-step-icon-size;
 			padding-top: $cadmin-multi-step-title-font-size +
 				$cadmin-multi-step-title-margin-bottom +
-				($cadmin-multi-step-divider-height / 2);
+				($cadmin-multi-step-divider-height * 0.5);
 		}
 
 		.multi-step-title {

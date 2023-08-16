@@ -30,13 +30,19 @@ $date-picker-nav-btn: () !default;
 $date-picker-nav-btn: map-deep-merge(
 	(
 		color: $gray-600,
-		transition: $btn-transition,
-		hover-bg: $gray-200,
-		focus-box-shadow: $input-btn-focus-box-shadow,
-		disabled-bg: transparent,
-		disabled-box-shadow: none,
-		disabled-color: $gray-600,
-		disabled-opacity: $btn-disabled-opacity,
+		transition: $component-transition,
+		hover: (
+			background-color: $gray-200,
+		),
+		focus: (
+			box-shadow: $component-focus-box-shadow,
+		),
+		disabled: (
+			background-color: transparent,
+			box-shadow: none,
+			color: $gray-600,
+			opacity: $component-disabled-opacity,
+		),
 	),
 	$date-picker-nav-btn
 );
@@ -120,7 +126,7 @@ $date-picker-day: map-deep-merge(
 // Date Picker Calendar
 
 $date-picker-calendar-container: () !default;
-$date-picker-calendar-container: map-deep-merge(
+$date-picker-calendar-container: map-merge(
 	(
 		float: left,
 		min-width: 100%,
@@ -129,7 +135,7 @@ $date-picker-calendar-container: map-deep-merge(
 );
 
 $date-picker-calendar-header-container: () !default;
-$date-picker-calendar-header-container: map-deep-merge(
+$date-picker-calendar-header-container: map-merge(
 	(
 		padding-bottom: 1rem,
 		padding-left: 1rem,
@@ -140,7 +146,7 @@ $date-picker-calendar-header-container: map-deep-merge(
 );
 
 $date-picker-calendar-body-container: () !default;
-$date-picker-calendar-body-container: map-deep-merge(
+$date-picker-calendar-body-container: map-merge(
 	(
 		padding-left: 1rem,
 		padding-right: 1rem,
@@ -150,7 +156,7 @@ $date-picker-calendar-body-container: map-deep-merge(
 );
 
 $date-picker-calendar-footer-container: () !default;
-$date-picker-calendar-footer-container: map-deep-merge(
+$date-picker-calendar-footer-container: map-merge(
 	(
 		border-color: $gray-400,
 		border-style: solid,
@@ -169,8 +175,9 @@ $date-picker-calendar-item: () !default;
 $date-picker-calendar-item: map-deep-merge(
 	(
 		align-items: center,
-		bg: transparent,
-		border-width: 0,
+		background-color:
+			setter(map-get($date-picker-calendar-item, bg) transparent),
+		border-width: 0px,
 		disabled-cursor: $disabled-cursor,
 		display: inline-flex,
 		flex-shrink: 0,
@@ -184,7 +191,7 @@ $date-picker-calendar-item: map-deep-merge(
 		padding-left: 0,
 		padding-right: 0,
 		padding-top: 0,
-		transition: $btn-transition,
+		transition: $component-transition,
 		user-select: none,
 		vertical-align: middle,
 		white-space: nowrap,
@@ -200,14 +207,22 @@ $date-picker-date: map-deep-merge(
 		color: $gray-600,
 		cursor: $link-cursor,
 		position: relative,
-		hover-bg: $gray-200,
-		focus-box-shadow: $input-btn-focus-box-shadow,
-		focus-outline: 0,
-		active-bg: $component-active-bg,
-		active-color: $component-active-color,
-		disabled-bg: transparent,
-		disabled-box-shadow: none,
-		disabled-opacity: $btn-disabled-opacity,
+		hover: (
+			background-color: $gray-200,
+		),
+		focus: (
+			box-shadow: $component-focus-box-shadow,
+			outline: 0,
+		),
+		active: (
+			background-color: $component-active-bg,
+			color: $component-active-color,
+		),
+		disabled: (
+			background-color: transparent,
+			box-shadow: none,
+			opacity: $component-disabled-opacity,
+		),
 	),
 	$date-picker-date
 );
@@ -216,7 +231,9 @@ $date-picker-previous-month-date: () !default;
 $date-picker-previous-month-date: map-deep-merge(
 	(
 		opacity: 0.65,
-		focus-opacity: 1,
+		focus: (
+			opacity: 1,
+		),
 		active: (
 			background-color: $primary-l1,
 			color: $primary-l3,
@@ -229,7 +246,9 @@ $date-picker-next-month-date: () !default;
 $date-picker-next-month-date: map-deep-merge(
 	(
 		opacity: 0.65,
-		focus-opacity: 1,
+		focus: (
+			opacity: 1,
+		),
 		active: (
 			background-color: $primary-l1,
 			color: $primary-l3,
@@ -243,7 +262,8 @@ $date-picker-next-month-date: map-deep-merge(
 $date-picker-input-group-text: () !default;
 $date-picker-input-group-text: map-deep-merge(
 	(
-		bg: transparent,
+		background-color:
+			setter(map-get($date-picker-input-group-text, bg) transparent),
 		border-color: transparent,
 		min-width: 2rem,
 		padding-left: 0.25rem,

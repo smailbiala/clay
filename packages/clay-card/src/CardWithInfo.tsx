@@ -15,7 +15,9 @@ import React from 'react';
 
 import ClayCard from './Card';
 
-interface IProps extends React.BaseHTMLAttributes<HTMLDivElement> {
+import type {ButtonWithIconProps} from '@clayui/button';
+
+export interface IProps extends React.BaseHTMLAttributes<HTMLDivElement> {
 	/**
 	 * List of actions in the dropdown menu
 	 */
@@ -44,7 +46,10 @@ interface IProps extends React.BaseHTMLAttributes<HTMLDivElement> {
 	/**
 	 * Props to add to the dropdown trigger element
 	 */
-	dropDownTriggerProps?: React.HTMLAttributes<HTMLButtonElement>;
+	dropDownTriggerProps?: Omit<
+		ButtonWithIconProps,
+		'symbol' | 'spritemap' | 'displayType' | 'className'
+	>;
 
 	/**
 	 * Flag to indicate if `aspect-ratio-item-flush` class should be
@@ -110,13 +115,16 @@ interface IProps extends React.BaseHTMLAttributes<HTMLDivElement> {
 	title: string;
 }
 
-export const ClayCardWithInfo: React.FunctionComponent<IProps> = ({
+export const ClayCardWithInfo = ({
+	'aria-label': ariaLabel,
 	actions,
 	checkboxProps = {},
 	description,
 	disabled,
 	displayType,
-	dropDownTriggerProps = {},
+	dropDownTriggerProps = {
+		'aria-label': 'More actions',
+	},
 	flushHorizontal,
 	flushVertical,
 	href,
@@ -179,6 +187,7 @@ export const ClayCardWithInfo: React.FunctionComponent<IProps> = ({
 							: 'primary'
 					}
 					position="bottom-left"
+					title={stickerProps.title}
 					{...stickerProps}
 				>
 					{stickerProps.children ? (
@@ -220,6 +229,7 @@ export const ClayCardWithInfo: React.FunctionComponent<IProps> = ({
 				<ClayCard.Row>
 					<ClayLayout.ContentCol expand>
 						<ClayCard.Description
+							aria-label={ariaLabel ?? title}
 							disabled={disabled}
 							displayType="title"
 							href={href}
@@ -251,7 +261,7 @@ export const ClayCardWithInfo: React.FunctionComponent<IProps> = ({
 								spritemap={spritemap}
 								trigger={
 									<ClayButtonWithIcon
-										{...dropDownTriggerProps}
+										{...(dropDownTriggerProps as ButtonWithIconProps)}
 										className="component-action"
 										disabled={disabled}
 										displayType="unstyled"

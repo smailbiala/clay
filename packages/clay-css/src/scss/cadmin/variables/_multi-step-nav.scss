@@ -23,7 +23,7 @@ $cadmin-multi-step-icon-hover-color: $cadmin-multi-step-icon-color !default;
 $cadmin-multi-step-icon-hover-text-decoration: none !default;
 
 $cadmin-multi-step-icon-focus-bg: $cadmin-multi-step-icon-hover-bg !default;
-$cadmin-multi-step-icon-focus-box-shadow: $cadmin-btn-focus-box-shadow !default;
+$cadmin-multi-step-icon-focus-box-shadow: $cadmin-component-focus-box-shadow !default;
 $cadmin-multi-step-icon-focus-color: $cadmin-multi-step-icon-hover-color !default;
 $cadmin-multi-step-icon-focus-outline: 0 !default;
 $cadmin-multi-step-icon-focus-text-decoration: $cadmin-multi-step-icon-hover-text-decoration !default;
@@ -31,8 +31,8 @@ $cadmin-multi-step-icon-focus-text-decoration: $cadmin-multi-step-icon-hover-tex
 $cadmin-multi-step-divider-bg: $cadmin-gray-200 !default;
 $cadmin-multi-step-divider-height: 4px !default;
 $cadmin-multi-step-divider-spacer-x: 0 !default;
-$cadmin-multi-step-divider-top: ($cadmin-multi-step-divider-height / 2) +
-	($cadmin-multi-step-icon-size / 2) !default;
+$cadmin-multi-step-divider-top: ($cadmin-multi-step-divider-height * 0.5) +
+	($cadmin-multi-step-icon-size * 0.5) !default;
 
 $cadmin-multi-step-indicator-width: $cadmin-multi-step-icon-size +
 	($cadmin-multi-step-divider-spacer-x * 2) !default;
@@ -48,9 +48,50 @@ $cadmin-multi-step-title-font-weight: $cadmin-font-weight-semi-bold !default;
 $cadmin-multi-step-title-margin-bottom: 10px !default; // 10px
 $cadmin-multi-step-title-max-width: 100px !default;
 
+$cadmin-multi-step-title-center: () !default;
+$cadmin-multi-step-title-center: map-deep-merge(
+	(
+		multi-step-title: (
+			margin-left: calc(#{$cadmin-multi-step-icon-size} * 0.5),
+			max-width: $cadmin-multi-step-title-max-width,
+			overflow: hidden,
+			position: relative,
+			text-align: center,
+			text-overflow: ellipsis,
+			transform: translateX(-50%),
+			white-space: nowrap,
+			width: auto,
+		),
+	),
+	$cadmin-multi-step-title-center
+);
+
 $cadmin-multi-step-item-margin-bottom: 10px !default;
 $cadmin-multi-step-item-width: 75px !default;
 $cadmin-multi-step-item-fixed-width: 150px !default;
+
+// data-multi-step-icon::before See https://issues.liferay.com/browse/LPS-147457.
+
+$cadmin-multi-step-item-error: () !default;
+$cadmin-multi-step-item-error: map-deep-merge(
+	(
+		multi-step-icon: (
+			background-color: $cadmin-danger,
+			background-image: clay-icon(times, $cadmin-white),
+			color: $cadmin-white,
+			text-indent: -100px,
+			data-multi-step-icon: (
+				before: (
+					content: none,
+				),
+			),
+			lexicon-icon: (
+				display: none,
+			),
+		),
+	),
+	$cadmin-multi-step-item-error
+);
 
 $cadmin-multi-step-icon-complete-color: $cadmin-white !default;
 $cadmin-multi-step-icon-complete-bg: $cadmin-gray-600 !default;

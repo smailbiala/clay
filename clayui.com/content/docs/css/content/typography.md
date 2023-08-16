@@ -10,6 +10,7 @@ order: 3
 <div class="nav-toc">
 
 -   [Headings](#css-headings)
+-   [Display](#css-display)
 -   [Lead](#css-lead)
 -   [Inline Text Elements](#css-inline-text-elements)
 -   [Reference Mark](#css-reference-mark)
@@ -29,6 +30,30 @@ order: 3
 
 ## Headings(#css-headings)
 
+Responsive styles are not included by default. You can set them through the `$h#` maps or write your own media queries.
+
+```scss{expanded}
+$h1: (
+	font-size: 1.625rem,
+	media-breakpoint-up: (
+		lg: (
+			font-size: 2rem,
+		),
+		xl: (
+			font-size: 4rem,
+		),
+	),
+	media-breakpoint-down: (
+		sm: (
+			font-size: 1rem,
+		),
+		xs: (
+			font-size: 0.875rem,
+		),
+	),
+);
+```
+
 <div class="sheet-example">
     <h1>h1 Article Heading <small>Sub text</small></h1>
     <h2>h2 Article Heading <small>Sub text</small></h2>
@@ -45,6 +70,40 @@ order: 3
 <h4>h4 Article Heading <small>Sub text</small></h4>
 <h5>h5 Article Heading <small>Sub text</small></h5>
 <h6>h6 Article Heading <small>Sub text</small></h6>
+```
+
+## Display(#css-display)
+
+Larger heading styles to make content stand out. Responsive styles are not included by default. You can set them through the `$display-*` map or write your own media queries.
+
+```scss{expanded}
+$display-1: (
+    media-breakpoint-down: (
+        md: (
+            font-size: 4.5rem,
+        ),
+        sm: (
+            font-size: 3.75rem,
+        ),
+        xs: (
+            font-size: 2.5rem,
+        ),
+    ),
+);
+```
+
+<div class="sheet-example">
+	<div class="display-1">Display 1</div>
+	<div class="display-2">Display 2</div>
+	<div class="display-3">Display 3</div>
+	<div class="display-4">Display 4</div>
+</div>
+
+```html
+<div class="display-1">Display 1</div>
+<div class="display-2">Display 2</div>
+<div class="display-3">Display 3</div>
+<div class="display-4">Display 4</div>
 ```
 
 ## Lead(#css-lead)
@@ -235,30 +294,100 @@ Milk filter lungo as galão roast that crema
 ## Contextual Texts(#css-contextual-texts)
 
 <div class="sheet-example">
-    <div>
-        <a href="#1" class="text-muted">text-muted: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
-    </div>
-    <div>
-        <a href="#1" class="text-primary">text-primary: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
-    </div>
-    <div>
-        <a href="#1" class="text-secondary">text-secondary: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
-    </div>
-    <div>
-        <a href="#1" class="text-info">text-info: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
-    </div>
-    <div>
-        <a href="#1" class="text-success">text-success: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
-    </div>
-    <div>
-        <a href="#1" class="text-warning">text-warning: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
-    </div>
-    <div>
-        <a href="#1" class="text-danger">text-danger: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
-    </div>
+	<div>
+		<a href="#1" class="text-blue">text-blue: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
+	</div>
+	<div>
+		<a href="#1" class="text-indigo">text-indigo: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
+	</div>
+	<div>
+		<a href="#1" class="text-purple">text-purple: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
+	</div>
+	<div>
+		<a href="#1" class="text-pink">text-pink: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
+	</div>
+	<div>
+		<a href="#1" class="text-red">text-red: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
+	</div>
+	<div>
+		<a href="#1" class="text-orange">text-orange: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
+	</div>
+	<div>
+		<a href="#1" class="text-yellow">text-yellow: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
+	</div>
+	<div>
+		<a href="#1" class="text-green">text-green: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
+	</div>
+	<div>
+		<a href="#1" class="text-teal">text-teal: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
+	</div>
+	<div>
+		<a href="#1" class="text-cyan">text-cyan: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
+	</div>
+	<div>
+		<a href="#1" class="text-muted">text-muted: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
+	</div>
+	<div>
+		<a href="#1" class="text-primary">text-primary: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
+	</div>
+	<div>
+		<a href="#1" class="text-secondary">text-secondary: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
+	</div>
+	<div>
+		<a href="#1" class="text-info">text-info: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
+	</div>
+	<div>
+		<a href="#1" class="text-success">text-success: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
+	</div>
+	<div>
+		<a href="#1" class="text-warning">text-warning: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
+	</div>
+	<div>
+		<a href="#1" class="text-danger">text-danger: Milk filter lungo as galão roast that crema blue mountain shop turkish.</a>
+	</div>
 </div>
 
 ```html
+<a href="#1" class="text-blue"
+	>text-blue: Milk filter lungo as galão roast that crema blue mountain shop
+	turkish.</a
+>
+<a href="#1" class="text-indigo"
+	>text-indigo: Milk filter lungo as galão roast that crema blue mountain shop
+	turkish.</a
+>
+<a href="#1" class="text-purple"
+	>text-purple: Milk filter lungo as galão roast that crema blue mountain shop
+	turkish.</a
+>
+<a href="#1" class="text-pink"
+	>text-pink: Milk filter lungo as galão roast that crema blue mountain shop
+	turkish.</a
+>
+<a href="#1" class="text-red"
+	>text-red: Milk filter lungo as galão roast that crema blue mountain shop
+	turkish.</a
+>
+<a href="#1" class="text-orange"
+	>text-orange: Milk filter lungo as galão roast that crema blue mountain shop
+	turkish.</a
+>
+<a href="#1" class="text-yellow"
+	>text-yellow: Milk filter lungo as galão roast that crema blue mountain shop
+	turkish.</a
+>
+<a href="#1" class="text-green"
+	>text-green: Milk filter lungo as galão roast that crema blue mountain shop
+	turkish.</a
+>
+<a href="#1" class="text-teal"
+	>text-teal: Milk filter lungo as galão roast that crema blue mountain shop
+	turkish.</a
+>
+<a href="#1" class="text-cyan"
+	>text-cyan: Milk filter lungo as galão roast that crema blue mountain shop
+	turkish.</a
+>
 <a href="#1" class="text-muted"
 	>text-muted: Milk filter lungo as galão roast that crema blue mountain shop
 	turkish.</a
@@ -292,27 +421,97 @@ Milk filter lungo as galão roast that crema
 ### Contextual Backgrounds(#css-contextual-backgrounds)
 
 <div class="sheet-example">
-    <div>
-        <span class="bg-primary">bg-primary: Milk filter lungo as galão roast that crema blue mountain shop turkish.</span>
-    </div>
-    <div>
-        <span class="bg-secondary">bg-secondary: Milk filter lungo as galão roast that crema blue mountain shop turkish.</span>
-    </div>
-    <div>
-        <span class="bg-success">bg-success: Milk filter lungo as galão roast that crema blue mountain shop turkish.</span>
-    </div>
-    <div>
-        <span class="bg-info">bg-info: Milk filter lungo as galão roast that crema blue mountain shop turkish.</span>
-    </div>
-    <div>
-        <span class="bg-warning">bg-warning: Milk filter lungo as galão roast that crema blue mountain shop turkish.</span>
-    </div>
-    <div>
-        <span class="bg-danger">bg-danger: Milk filter lungo as galão roast that crema blue mountain shop turkish.</span>
-    </div>
+	<div>
+		<span class="bg-blue">bg-blue: Milk filter lungo as galão roast that crema blue mountain shop turkish.</span>
+	</div>
+	<div>
+		<span class="bg-indigo">bg-indigo: Milk filter lungo as galão roast that crema blue mountain shop turkish.</span>
+	</div>
+	<div>
+		<span class="bg-purple">bg-purple: Milk filter lungo as galão roast that crema blue mountain shop turkish.</span>
+	</div>
+	<div>
+		<span class="bg-pink">bg-pink: Milk filter lungo as galão roast that crema blue mountain shop turkish.</span>
+	</div>
+	<div>
+		<span class="bg-red">bg-red: Milk filter lungo as galão roast that crema blue mountain shop turkish.</span>
+	</div>
+	<div>
+		<span class="bg-orange">bg-orange: Milk filter lungo as galão roast that crema blue mountain shop turkish.</span>
+	</div>
+	<div>
+		<span class="bg-yellow">bg-yellow: Milk filter lungo as galão roast that crema blue mountain shop turkish.</span>
+	</div>
+	<div>
+		<span class="bg-green">bg-green: Milk filter lungo as galão roast that crema blue mountain shop turkish.</span>
+	</div>
+	<div>
+		<span class="bg-teal">bg-teal: Milk filter lungo as galão roast that crema blue mountain shop turkish.</span>
+	</div>
+	<div>
+		<span class="bg-cyan">bg-cyan: Milk filter lungo as galão roast that crema blue mountain shop turkish.</span>
+	</div>
+	<div>
+		<span class="bg-primary">bg-primary: Milk filter lungo as galão roast that crema blue mountain shop turkish.</span>
+	</div>
+	<div>
+		<span class="bg-secondary">bg-secondary: Milk filter lungo as galão roast that crema blue mountain shop turkish.</span>
+	</div>
+	<div>
+		<span class="bg-success">bg-success: Milk filter lungo as galão roast that crema blue mountain shop turkish.</span>
+	</div>
+	<div>
+		<span class="bg-info">bg-info: Milk filter lungo as galão roast that crema blue mountain shop turkish.</span>
+	</div>
+	<div>
+		<span class="bg-warning">bg-warning: Milk filter lungo as galão roast that crema blue mountain shop turkish.</span>
+	</div>
+	<div>
+		<span class="bg-danger">bg-danger: Milk filter lungo as galão roast that crema blue mountain shop turkish.</span>
+	</div>
 </div>
 
 ```html
+<span class="bg-blue"
+	>bg-blue: Milk filter lungo as galão roast that crema blue mountain shop
+	turkish.</span
+>
+<span class="bg-indigo"
+	>bg-indigo: Milk filter lungo as galão roast that crema blue mountain shop
+	turkish.</span
+>
+<span class="bg-purple"
+	>bg-purple: Milk filter lungo as galão roast that crema blue mountain shop
+	turkish.</span
+>
+<span class="bg-pink"
+	>bg-pink: Milk filter lungo as galão roast that crema blue mountain shop
+	turkish.</span
+>
+<span class="bg-red"
+	>bg-red: Milk filter lungo as galão roast that crema blue mountain shop
+	turkish.</span
+>
+<span class="bg-orange"
+	>bg-orange: Milk filter lungo as galão roast that crema blue mountain shop
+	turkish.</span
+>
+<span class="bg-yellow"
+	>bg-yellow: Milk filter lungo as galão roast that crema blue mountain shop
+	turkish.</span
+>
+<span class="bg-green"
+	>bg-green: Milk filter lungo as galão roast that crema blue mountain shop
+	turkish.</span
+>
+<span class="bg-teal"
+	>bg-teal: Milk filter lungo as galão roast that crema blue mountain shop
+	turkish.</span
+>
+<span class="bg-cyan"
+	>bg-cyan: Milk filter lungo as galão roast that crema blue mountain shop
+	turkish.</span
+>
 <span class="bg-primary"
 	>bg-primary: Milk filter lungo as galão roast that crema blue mountain shop
 	turkish.</span

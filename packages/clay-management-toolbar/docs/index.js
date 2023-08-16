@@ -34,6 +34,7 @@ const MinimalManagementToolbarCode = `const Component = () => {
 							/>
 							<ClayInput.GroupInsetItem after tag="span">
 							<ClayButtonWithIcon
+								aria-label="Close search"
 								className="navbar-breakpoint-d-none"
 								displayType="unstyled"
 								onClick={() => setSearchMobile(false)}
@@ -41,6 +42,7 @@ const MinimalManagementToolbarCode = `const Component = () => {
 								symbol="times"
 							/>
 							<ClayButtonWithIcon
+								aria-label="Search"
 								displayType="unstyled"
 								spritemap={spritemap}
 								symbol="search"
@@ -53,6 +55,7 @@ const MinimalManagementToolbarCode = `const Component = () => {
 				
 				<ClayManagementToolbar.Item>
 					<ClayButton
+						aria-label="Info"
 						className="nav-link nav-link-monospaced"
 						displayType="unstyled"
 						onClick={() => {}}
@@ -63,6 +66,7 @@ const MinimalManagementToolbarCode = `const Component = () => {
 
 				<ClayManagementToolbar.Item>
 					<ClayButtonWithIcon
+						aria-label="Add"
 						className="nav-btn nav-btn-monospaced"
 						spritemap={spritemap}
 						symbol="plus"
@@ -187,6 +191,7 @@ const ManagementToolbarCode = `const Component = () => {
 	];
 
 	const [searchMobile, setSearchMobile] = useState(false);
+	const [checked, setChecked] = useState(false);
 
 	const viewTypeActive = viewTypes.find(type => type.active);
 
@@ -195,7 +200,13 @@ const ManagementToolbarCode = `const Component = () => {
 			<ClayManagementToolbar>
 				<ClayManagementToolbar.ItemList>
 					<ClayManagementToolbar.Item>
-						<ClayCheckbox checked={false} onChange={() => {}} />
+						<ClayCheckbox
+							aria-label={checked ? 'Unselect all' : 'Select all'}
+							checked={checked}
+							onChange={(event) =>
+								setChecked(event.target.checked)
+							}
+						/>
 					</ClayManagementToolbar.Item>
 
 					<ClayDropDownWithItems
@@ -229,6 +240,7 @@ const ManagementToolbarCode = `const Component = () => {
 
 					<ClayManagementToolbar.Item>
 						<ClayButton
+							aria-label="Order"
 							className="nav-link nav-link-monospaced"
 							displayType="unstyled"
 							onClick={() => {}}
@@ -252,6 +264,7 @@ const ManagementToolbarCode = `const Component = () => {
 							/>
 							<ClayInput.GroupInsetItem after tag="span">
 								<ClayButtonWithIcon
+									aria-label="Close search"
 									className="navbar-breakpoint-d-none"
 									displayType="unstyled"
 									onClick={() => setSearchMobile(false)}
@@ -259,6 +272,7 @@ const ManagementToolbarCode = `const Component = () => {
 									symbol="times"
 								/>
 								<ClayButtonWithIcon
+									aria-label="Search"
 									displayType="unstyled"
 									spritemap={spritemap}
 									symbol="search"
@@ -272,6 +286,7 @@ const ManagementToolbarCode = `const Component = () => {
 				<ClayManagementToolbar.ItemList>
 					<ClayManagementToolbar.Item className="navbar-breakpoint-d-none">
 						<ClayButton
+							aria-label="Search"
 							className="nav-link nav-link-monospaced"
 							displayType="unstyled"
 							onClick={() => setSearchMobile(true)}
@@ -285,6 +300,7 @@ const ManagementToolbarCode = `const Component = () => {
 
 					<ClayManagementToolbar.Item>
 						<ClayButton
+							aria-label="Info"
 							className="nav-link nav-link-monospaced"
 							displayType="unstyled"
 							onClick={() => {}}
@@ -302,6 +318,7 @@ const ManagementToolbarCode = `const Component = () => {
 							spritemap={spritemap}
 							trigger={
 								<ClayButton
+									aria-label="Display view"
 									className="nav-link-monospaced nav-link"
 									displayType="unstyled"
 								>
@@ -320,6 +337,7 @@ const ManagementToolbarCode = `const Component = () => {
 
 					<ClayManagementToolbar.Item>
 						<ClayButtonWithIcon
+							aria-label="Add"
 							className="nav-btn nav-btn-monospaced"
 							spritemap={spritemap}
 							symbol="plus"
